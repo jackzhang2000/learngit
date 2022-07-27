@@ -1,0 +1,362 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HALLO Data Portal</title>
+    <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyC-7ZCqywqSbMdbu_NcKeK9oKDLsWQgoA0" type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            min-height: 2000px;
+            padding-top: 70px;
+        }
+
+        .navbar-default {
+            background-color: #ff8800;
+            border-color: #e7e7e7;
+        }
+
+        .navbar-default .navbar-brand {
+            color: #fff;
+        }
+
+        .navbar-default .navbar-nav>li>a,
+        .navbar-default .navbar-nav>li>a:visited {
+            color: #fff;
+            width: 100px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .navbar-default .navbar-nav>.active>a,
+        .navbar-default .navbar-nav>.active>a:visited,
+        .navbar-default .navbar-nav li a:hover,
+        .navbar-default .navbar-nav>.active>a:hover,
+        .navbar-default .navbar-nav li a:active {
+            color: #fff;
+            background-color: #FF4500;
+            width: 100px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        table tr td {
+            font-size: 11px;
+        }
+
+        table tr td.price {
+            color: red;
+        }
+
+        table tr td.num span {
+            color: red;
+            padding: 0px 5px
+        }
+
+        table tr td.num i {
+            border-width: 0px;
+            background-color: #ddd;
+        }
+
+        div.shoplist div.bn {
+            font-size: 12px;
+            line-height: 25px;
+        }
+
+        div.shoplist div.bn span.price {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 页头导航开始 -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                    <span style="font-weight:bold;">HALLO Data Portal</span>
+                    <span style="font-size:14px;"></span></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+					<li><a href="/web/">Datasets</a></li>
+					<li class="active"><a href="{% url 'web_orders_index' 1 %}?status=1">Benchmarks</a></li>
+					<li><a href="#">About</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar/"><span class="glyphicon glyphicon-user" aria-hidden="true">{{request.session.webuser.username}}</a></li>
+                        <li>{% if request.session.webuser.username %}
+                          <a href="{% url 'web_logout' %}">Log off</a>
+                        {% else %}
+                        <a href="{% url 'web_login' %}">Log In</a>
+                        {% endif %}</li>			
+                        <li><a href="{% url 'web_signup' %}">Sign Up</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <!-- 页头导航结束 -->
+    <!-- Content Header (Page header) -->
+    <!-- 页面主体开始 -->
+    <div class="container">
+        <section class="content-header">
+
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h2 align="center">Model "{{ dataset.Dataset_Name }}" Details</h2>
+                </div>
+
+                <div class="panel-body">
+
+
+                    
+                    <div class=" row">
+                        <div class="col-md-3 control-label">
+                            <b>Model Package Download</b>
+                            <br>
+                            <br>
+                            {% if request.session.webuser.username %}
+                            {% for svo in archivelist %}
+                            <a href="/static/uploads/archive/{{ svo.File_name }}" onclick="doDownload('{% url 'web_download' svo.File_name %}')" 
+                            class="btn btn-warning btn-xs">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true">{{ svo.File_name }}</span>
+                            </a>
+                            <br>
+                            <br>
+                            {% endfor %}
+                            <br>
+                          {% else %}
+                          To download Model Package files you need Signup and Login:
+                          <br>
+                          <a href="{% url 'web_login' %}">Log In</a>
+                          <br>
+                          {% endif %}
+                            <br>
+
+                            
+
+
+
+
+                        </div>
+
+                        <div class="col-md-9">
+
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active"><a href="#metadata" data-toggle="tab"><b>Metadata</b></a></li>
+                                <li><a href="#home" data-toggle="tab">
+                                        <b>Summary_by_Species</b></a></li>
+                                <li><a href="#home" data-toggle="tab">
+                                        <b>Summary_by_Ecotypes</b></a></li>
+                                <li><a href="#home" data-toggle="tab">
+                                        <b>Summary_by_Pods</b></a></li>
+                                <li><a href="#home" data-toggle="tab">
+                                        <b>Summary_by_CallType</b></a></li>
+
+
+
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="metadata">
+                                    <b>Number of files:</b> {{ dataset.Num_Of_Files }}
+                                    <br>
+                                    <b>Number of annotated events:</b> {{ dataset.Num_Of_Annotated_Events }}
+                                    <br>
+                                    <b>Species identified:</b>
+                                    <br>
+                                    {{ dataset.Species_identified }}
+                                    <br>
+                                    <div class="row">
+
+                                        <div class="col-md-5"><b>Sampling_rate: </b> {{ dataset.Sampling_rate }}
+                                            <br>
+                                            <b>Annotation_type:</b> {% if dataset.Annotation_type == 1 %}
+                                            <span style="color:green">Detailed Annotation</span>
+                                            {% elif dataset.Annotation_type == 2 %}
+                                            <span style="color:red">Coarse Annotation</span>
+                                            {% endif %}
+                                            <br>
+                                            <b>Total duration:</b> {{ dataset.Total_Duration }}
+                                            <br>
+                                            <b>File size:</b> {{ dataset.File_Size }}
+                                            <br>
+                                            <b>Total size:</b> {{ dataset.Total_Size }}
+                                            <br>
+                                            <b> Number of subsets:</b> {{ dataset.Number_of_Subsets }}
+                                            <br>
+                                            <b>Location:</b> {{ dataset.Location }}
+                                            <br>
+                                            <b>Coordinates:</b> {{ dataset.Latitude }} &nbsp;{{ dataset.Longitude }}
+                                            <br>
+                                            <b>Depth:</b> 3{{ dataset.Depth }}
+                                        </div>
+                                        <div class="col-md-7"><div id="map" style="width: 450px; height: 400px;"></div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade " id="home">
+                                    <img src="/static/uploads/dataset/{{ dataset.Summary_by_Species }}"
+                                        title="Meridian">
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+    </div>
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        d3.text("/static/uploads/annotation/{{ annotation.File_name }}", function (data) {
+            var parsedCSV = d3.csv.parseRows(data).slice(0, 10);
+            var container = d3.select("#dvCSV")
+                .append("table")
+                .selectAll("tr")
+                .data(parsedCSV).enter()
+                .append("tr")
+                .selectAll("td")
+                .data(function (d) { return d; }).enter()
+                .append("td")
+                .text(function (d) { return d; });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // 获取已激活的标签页的名称
+                var activeTab = $(e.target).text();
+                // 获取前一个激活的标签页的名称
+                var previousTab = $(e.relatedTarget).text();
+                $(".active-tab span").html(activeTab);
+                $(".previous-tab span").html(previousTab);
+            });
+        });
+    </script>
+
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+
+    </section>
+    </div>
+    <!-- 页面主体结束 -->
+
+    <script src="{% static 'web/js/jquery.min.js' %}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+    <script>
+        //对下载的点击进行记录
+        function doDownload(url){
+            alert(url);
+          window.location.href=url;
+      };
+  
+        function download() {
+            //获取要提交的数据
+            var ptype = $("input[name='ptype']:checked").val();
+            var bank = $("input[name='bank']:checked").val();
+            //alert(ptype+":"+bank);
+            //执行ajax提交订单
+            $.ajax({
+                type: "get",
+                url: "{% url 'web_orders_insert' %}",
+                dataType: "text",
+                data: { ptype: ptype, bank: bank },
+                success: function (res) {
+                    if (res == "Y") {
+                        alert("Query completed, please check below result！");
+                        window.location.href = "{% url 'web_index' %}";
+                    } else {
+                        alert("Query completed, please check below result！");
+                    }
+                }
+            });
+        }
+        function doShow(id) {
+            $.ajax({
+                type: 'get',
+                url: "{% url 'web_orders_detail' %}",
+                dataType: 'text',
+                data: { oid: id },
+                async: false,
+                success: function (res) {
+                    $("#myModal div.modal-body").empty().append(res);
+                    $('#myModal').modal({ keyboard: false })
+                },
+            });
+        }
+
+        function doChangeStatus(id, s) {
+            var info = ["", "", "确定要删除订单吗？", "确定要完成此订单吗？"];
+            if (window.confirm(info[s])) {
+                $.get("{% url 'web_orders_status' %}", { oid: id, status: s }, function (data) {
+                    if (data == "Y") {
+                        $("tr.oid" + id).remove();
+                    } else {
+                        alert("订单处理失败！");
+                    }
+                }, 'text');
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+		var locations = [
+		  ['SoGEast_JascoAMARArray_ULS1_2015-09',  49.042645, -123.31744, 1]
+		];
+		
+		var map = new google.maps.Map(document.getElementById('map'), {
+		  zoom: 5,
+		  center: new google.maps.LatLng(48.042645, -124.317442),
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+		
+		var infowindow = new google.maps.InfoWindow();
+	
+		var marker, i;
+		
+		for (i = 0; i < locations.length; i++) {  
+		  marker = new google.maps.Marker({
+			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+			map: map
+		  });
+		  
+		  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+			  infowindow.setContent(locations[i][0]);
+			  infowindow.open(map, marker);
+			}
+		  })(marker, i));
+		}
+	  </script>
+</body>
+
+</html>

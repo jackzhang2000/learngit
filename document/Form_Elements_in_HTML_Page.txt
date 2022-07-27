@@ -1,0 +1,64 @@
+-------------Model Defintion-------------
+Model Label: Frazao_MERIDIAN_KWD_v1
+Model Name: Killer whale detector
+Abbreviation: kw_det
+First name: Fabio
+Last name: Frazao
+Email: fsfrazao@dal.ca
+Submission Date: Tue Apr 19 2022 21:00:00 GMT-0300 (Atlantic Daylight Saving Time)
+Input Sampling Rate (In kHz): 20
+Data Augmentation: time stretching
+Machine Learning Method:template matching
+External Data Usage:directly
+Post Processing: peak picking,threshold
+Classification Level:species
+Classes:KW
+Total Parameters:variable
+Training Time:variable
+Model Size(In MB):100
+Source Code: # URL to the source code of the system [optional, highly recommended]
+External Dataset Name: Jasco_Dataset2012.wav
+External Dataset URL: http://dataport_domain_name:7000/web/detail/18
+External Dataset Total Audio Length (minutes):120
+Test Dataset 1 Name:test_set_1
+Test Dataset 2 Name:test_set_2
+Figure of Test Set 1: upload or select from server path
+Figure of Test Set 2: upload or select from server path
+F Score of Test Set 1: 1.22
+F Score of Test Set 2: 5.84
+Model Package File:upload or select from server path, e.g.: /home/jack/Frazao_MERIDIAN_KWD_v1.zip
+----Below files are archived together in the model package file listed above-----------------------------
+Yaml file Name: hallo.yaml
+Ketos Model file Name:kw_001.kt
+Python Script: run_model.py
+Detailed Description:readme.md
+performance figure:figures/*.png
+
+-------------Dataset Defintion-------------
+Location: Lime Kiln State Park
+Directory: JASCO/RobertsBank/false
+Device: JASCO M36 Hydrophone 2402 (23631) Details
+Site_Name: SoGEast_JascoAMARArray_ULS1_2015-09
+Site_Latitude: 49.042645
+Site_Longitude: -123.31744
+Site_Depth: 168 # In meter
+Site_Datetime_from: 14-Sep-2015 19:49:25
+Site_Datetime_to: 08-Oct-2016 01:59:36
+Number_of_Files: 698 
+Start_Record_Date: 09/21/2015 #local time of the location mentioned below
+End_Record_Date: 04/03/2018
+Total_size: 57.6 #in MB
+File_duration: 5 # Single wave file duration in mintues
+Source: JASCO/ONC
+Description: Full-length audio files which contain verified FALSE positives
+Latitude: 49.042645
+Longitude: -123.31744
+Water_depth: 168m
+File_type: .WAV
+Codec: PCM S24 LE (s24l)
+Channels: Mono
+Sample_Rate: 64000 Hz
+URL: https://data.oceannetworks.ca/DeviceListing?DeviceId=23631
+
+
+

@@ -1,0 +1,86 @@
+{% extends "myadmin/base.html" %}
+
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Add Dataset Archive
+    <small>Halo Portal Data Management</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>
+    <li class="active">Halo Portal Data Management</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h2 class="box-title"><span class="glyphicon glyphicon-calendar" aria-hidden="true">Add Archive</h2>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" action="{% url 'myadmin_archive_insert' %}" method="post"
+          enctype="multipart/form-data" class="form-horizontal">
+          {% csrf_token %}
+          <div class="box-body">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Dataset Name</label>
+              <div class="col-sm-4">
+                <select name="dataset_id" class="form-control select2" style="width: 100%;">
+                  <option value="{{ archive.ID }}">{{ archive.Dataset_Name }}</option>
+                </select>
+                <input type="hidden" name="dataset_name" id="dataset_name" value="{{ archive.Dataset_Name }}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Upload 1# Archive File</label>
+              <div class="col-sm-4">
+                <input type="file" name="fileUpload1" id="fileUpload1" class="form-control" accept=".ZIP, .zip">
+              </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">Upload 2# Archive File</label>
+              <div class="col-sm-4">
+                <input type="file" name="fileUpload2" id="fileUpload2" class="form-control" accept=".ZIP, .zip">
+              </div>
+
+            </div>
+
+          </div>
+          Please input the actual file name on Data server, e.g.: /data/Jasco20220325.zip (Linux) or
+          D:\Work\Dalhousie\halo\portal\static\uploads\archive\Jasco20220325.zip (Windows)
+          <div class="form-group">
+
+            <label for="inputEmail3" class="col-sm-2 control-label">File#1 Name on the server</label>
+            <div class="col-sm-4">
+              <input type="text" name="fileonserver1" class="form-control" id="fileonserver1"
+                placeholder="fileonserver.zip" />
+            </div>
+            <label for="inputEmail3" class="col-sm-2 control-label">File#2 Name on the server</label>
+            <div class="col-sm-4">
+              <input type="text" name="fileonserver2" class="form-control" id="fileonserver2"
+                placeholder="fileonserver.zip" />
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary" <span class="glyphicon glyphicon-upload"
+                style="margin-right:5px;"></span>Save </button> &nbsp;
+              <button type="reset" class="btn btn-default">Reset </button>
+              <div class="col-sm-offset-2 col-sm-10">
+              </div>
+              <!-- /.box-footer -->
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>
+<!-- /.content -->
+{% endblock %}

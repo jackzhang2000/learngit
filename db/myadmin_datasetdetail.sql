@@ -1,0 +1,1 @@
+INSERT INTO "myadmin_datasetdetail"("ID", "Dataset_ID", "File_type", "File_name", "Download_link", "create_at", "update_at", "create_by", "update_by") VALUES (1, 9, 'zip', 'Roberts_Bank001.zip', 'http://halo.dal.ca/data/Roberts_Bank001.zip', '2022-02-24 11:40:05-04', '2022-02-24 11:40:08-04', 'Jack', 'Jack');

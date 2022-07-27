@@ -1,0 +1,8 @@
+- !Person
+  name: 张三
+  age: 18
+  sex: boy
+- !Person
+  name: 小红
+  age: 14
+  sex: girl

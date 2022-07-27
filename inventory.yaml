@@ -1,0 +1,702 @@
+Location: Robert's Bank
+	Directory: JASCO/RobertsBank/false
+	  Device: JASCO M36 Hydrophone 2402 (23631) Details
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS1_2015-09
+        Latitude: 49.042645
+        Longitude: -123.31744
+        Depth: 168 m
+        Date from: 14-Sep-2015 19:49:25
+        Date to: 08-Oct-2016 01:59:36
+      Notes:
+        - 698 files
+        - 09/21/2015 to 04/03/2018
+        - 57.6 MB size
+        - 5 minutes length
+        - Source: JASCO/ONC
+        - Description: Full-length audio files which contain verified FALSE positives
+        - Location: Robert's Bank
+        - Coodinates: 49.042645, -123.31744
+        - Water depth: 168m
+        - .WAV
+          - Codec: PCM S24 LE (s24l)
+          - Channels: Mono
+          - Sample Rate: 64000 Hz
+        - https://data.oceannetworks.ca/DeviceListing?DeviceId=23631
+        - Location: Robert's Bank
+
+  Directory: JASCO/RobertsBank/true
+    Device: JASCO M36 Hydrophone 2402 (23631) Details
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS1_2015-09
+        Latitude: 49.042645
+        Longitude: -123.31744
+        Depth: 168 m
+        Date from: 14-Sep-2015 19:49:25
+        Date to: 08-Oct-2016 01:59:36
+      Notes:
+        - 894 files
+        - 09/23/2015 to 04/12/2018
+        - 57.6 MB size (65 files of 109 MB size)
+        - 5 minutes length
+        - Source: JASCO/ONC
+        - Description: Full-length audio files which contain verified TRUE positives
+        - Location: Robert's Bank 
+        - Coodinates: 49.042645, -123.31744
+        - Water depth: 168m
+        - .WAV
+          - Codec: PCM S24 LE (s24l)
+          - Channels: Mono
+          - Sample Rate: 64000 Hz
+        - https://data.oceannetworks.ca/DeviceListing?DeviceId=23631
+
+Location: Boundary Pass
+  Directory: JASCO/BoundaryPass/AMAR418
+    Notes:
+      - 91 files
+      - 08/29/2018 to 05/17/2019 
+      - 690.8 MB size
+      - 30 minutes length
+      - Source: JASCO
+      - Description: Full-length audio files which contain verified TRUE positives
+      - Location: Boundary Pass
+      - Coordinates: 48.76078, -123.06794
+      - Water depth: 193m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 128000 Hz
+      - Files were sent directly from JASCO's east coast office on a harddisk
+
+Location: Boundary Pass
+  Directory: JASCO/BoundaryPass/AMAR419
+    Notes:
+      - 49 files
+      - 10/28/2018 to 07/03/2019
+      - 690.8 MB size
+      - 30 minutes length
+      - Source: JASCO
+      - Description: Full-length audio files which contain verified TRUE positives
+      - Location: Boundary Pass
+      - Coordinates: 48.76078, -123.06794
+      - Water depth: 193m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 128000 Hz
+      - Files were sent directly from JASCO's east coast office on a harddisk
+
+Location: Boundary Pass
+  Directory: JASCO/BoundaryPass/AMAR429
+    Notes:
+      - 18 files
+      - 07/06/2019 to 08/21/2019
+      - 690.8 MB size
+      - 30 minutes length
+      - Source: JASCO
+      - Description: Full-length audio files which contain verified TRUE positives
+      - Location: Boundary Pass
+      - Coordinates: 48.76078, -123.06794
+      - Water depth: 193m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 128000 Hz
+      - Files were sent directly from JASCO's east coast office on a harddisk
+
+Location: Boundary Pass
+  Directory: JASCO/BoundaryPass/AMAR436
+    Notes:
+    	- 19 files
+      - 01/25/2019 to 03/19/2019
+      - 690.8 MB size
+      - 30 minutes length
+      - Source: JASCO
+      - Description: Full-length audio files which contain verified TRUE positives
+      - Location: Boundary Pass
+      - Coordinates: 48.76078, -123.06794
+      - Water depth: 193m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 128000 Hz
+      - Files were sent directly from JASCO's east coast office on a harddisk
+
+Location: Boundary Pass
+  Directory: JASCO/BoundaryPass/AMAR437
+    Notes:
+      - 30 files
+      - 12/15/2018 to 01/25/2019
+      - 690.8 MB size
+      - 30 minutes length
+      - Source: JASCO
+      - Description: Full-length audio files which contain verified TRUE positives
+      - Location: Boundary Pass
+      - Coordinates: 48.76078, -123.06794
+      - Water depth: 193m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 128000 Hz
+      - Files were sent directly from JASCO's east coast office on a harddisk
+
+Location: Barkley Canyon
+  Directory: ONC/BarkleyCanyon/
+    Device: Ocean Sonics icListen HF Hydrophone 1251 (23157)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: UpperSlope_IP_South_Hydrophone_2013-05
+        Latitude: 48.4266583333
+        Longitude: -126.1741683333
+        Depth: 392 m
+        Date from: 11-May-2013 21:24:09
+        Date to: 03-May-2014 19:59:39
+      Filename Prefix: ICLISTENHF1251_2013
+    Device: Ocean Sonics icListen HF Hydrophone 1251 (23157)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: UpperSlope_IP_South_2013-05
+        Latitude: 48.4270666667
+        Longitude: -126.1744
+        Depth: 392 m
+        Date from: 03-May-2014 19:59:39
+        Date to: 04-May-2014 19:39:00
+      Filename Prefix: ICLISTENHF1251_201404
+    Device: Ocean Sonics icListen HF Hydrophone 1251 (23157)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: UpperSlope_IP_South_Hydrophone_2014-05
+        Latitude: 48.4263633
+        Longitude: -126.1743967
+        Depth: 391 m
+        Date from: 07-May-2014 20:59:04
+        Date to: 17-Sep-2015 02:57:16
+      Filename Prefix: [ICLISTENHF1251_201407, ICLISTENHF1251_201409]
+
+Location: British Columbia, North Coast
+  Directory: ONC/BCNorthCoast/
+    Device: Ocean Sonics icListen HF Hydrophone 1351 (23482)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: KitamaatVillage_Hydrophone_2017-04
+        Latitude: 53.974586666
+        Longitude: -128.657121666
+        Depth: 41 m
+        Date from: 06-Apr-2017 00:00:00
+        Date to: 23-Oct-2018 19:30:00
+      Filename Prefix: [ICLISTENHF1351_2017, ICLISTENHF1351_2018]
+    Device: Ocean Sonics icListen HF Hydrophone 1351 (23482)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: KitamaatVillage_UnderwaterPlatform_2018-10
+        Latitude: 53.974785
+        Longitude: -128.65718333333334
+        Depth: 44.1 m
+        Date from: 24-Oct-2018 00:00:00
+        Date to: 26-May-2020 17:25:00
+      Filename Prefix: ICLISTENHF1351_2019
+    Device: Ocean Sonics icListen HF Hydrophone 1352 (23483)
+      Properties:
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: DigbyIsland_Hydrophone_2017-04
+        Latitude: 54.258861666
+        Longitude: -130.430981666
+        Depth: 26 m
+        Date from: 07-Apr-2017 00:00:00
+        Date to: 25-Oct-2018 22:24:00
+      Filename Prefix: ICLISTENHF1352_2017
+    Device: Ocean Sonics icListen HF Hydrophone 1352 (23483)
+      Properties:
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: DigbyIsland_UnderwaterPlatform_2019-08
+        Latitude: 54.25880556
+        Longitude: -130.4306944
+        Depth: 28 m
+        Date from: 29-Aug-2019 20:18:00
+        Date to: 02-Jun-2021 17:24:00
+      Filename Prefix: ICLISTENHF1352_2019 
+
+
+
+Location: Clayoquot Slope
+  Directory: ONC/ClayoquotSlope/
+    Device: Ocean Sonics icListen HF Hydrophone 1333 (23479)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: ClayoquotSlope_HydrophoneHF_2015-09
+        Latitude: 48.671407
+        Longitude: -126.846813
+        Depth: 1255 m
+        Date from: 15-Sep-2015 00:38:38
+        Date to: 24-Jun-2016 04:00:27
+      Filename Prefix: ICLISTENHF1333Location: Endeavour
+  Directory: ONC/Endeavour/
+    Device: Ocean Sonics icListen HF Hydrophone 1293 (23378) 
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: Mothra_Hydrophone_2016-06
+        Latitude: 47.923667
+        Longitude: -129.108903
+        Depth: 2277 m
+        Date from: 19-Jun-2016 09:30:23
+        Date to: 29-Jun-2018 19:02:32
+      Filename Prefix: ICLISTENHF1293Location: Saanich Inlet, Central Node
+  Directory: ONC/SaanichInlet/
+    Device: Ocean Sonics icListen HF Hydrophone 1266 (23235)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: VIP-25-SH
+        Latitude: 48.65128667
+        Longitude: -123.487135
+        Depth: 92 m
+        Date from: 06-Oct-2016 03:12:42
+        Date to: 22-Jun-2017 05:45:32
+      Filename Prefix: ICLISTENHF1266Location: Strait of Georgia, Central Node
+  Directory: ONC/StraitOfGeorgiaCentral/
+    Device: Ocean Sonics icListen HF Hydrophone 1350 (23481)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: VIP-18-SH
+        Latitude: 49.0394316
+        Longitude: -123.4251202
+        Depth: 298 m
+        Date from: 30-Sep-2018 16:42:28
+        Date to: 04-Mar-2020 22:30:06
+      Filename Prefix: ICLISTENHF1350
+    Device: Ocean Sonics icListen HF Hydrophone 1354 (23485)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: VIP-14-SH
+        Latitude: 49.040216666
+        Longitude: -123.426418333
+        Depth: 297 m
+        Date from: 03-May-2016 20:54:19
+        Date to: 08-Oct-2016 15:40:20
+      Filename Prefix: ICLISTENHF1354
+    Device: Naxys Ethernet Hydrophone 02345 Ti (S/N 052) (23085)
+      Site:
+        Name: VIP-17-SH
+        Latitude: 49.04125831
+        Longitude: -123.42571968
+        Depth: 298 m
+        Date from: 23-Jun-2017 08:24:00
+        Date to: 30-Sep-2018 18:38:15
+      Filename Prefix: NAXYS_HYD_052
+Location: Straight of Georgia, East Node
+  Directory: ONC/StraitOfGeorgiaEast/
+    Device: JASCO M36-V35-100 Hydrophone B000909 (23940)
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS3_2016-10
+        Latitude: 49.04324333
+        Longitude: -123.31774667
+        Depth: 166 m
+        Date from: 07-Oct-2016 18:14:44
+        Date to: 04-Nov-2017 21:51:54
+      Filename Prefix: JASCOAMARHYDROPHONEB000909
+    Device: JASCO M8E-51C35dBV Hydrophone 736 (23276)
+      Site:
+        Name: SoGEast_JascoAMARArray_2014-03
+        Latitude: 49.042513333
+        Longitude: -123.317755
+        Depth: 172 m
+        Date from: 07-Mar-2014 00:42:00
+        Date to: 15-Sep-2015 04:00:52
+      Filename Prefix: JASCOAMARHYDROPHONE736
+    Device: JASCO M36 Hydrophone 2402 (23631)
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS1_2015-09
+        Latitude: 49.042645
+        Longitude: -123.31744
+        Depth: 168 m
+        Date from: 14-Sep-2015 19:49:25
+        Date to: 08-Oct-2016 01:59:36
+      Filename Prefix: JASCOAMARHYDROPHONE2402
+    Device: JASCO M36 Hydrophone 2403 (23632)
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS1_2015-09
+        Latitude: 49.042645
+        Longitude: -123.31744
+        Depth: 168 m
+        Date from: 14-Sep-2015 19:49:25
+        Date to: 08-Oct-2016 01:59:36	
+      Filename Prefix: JASCOAMARHYDROPHONE2403
+    Device: JASCO M36 Hydrophone 2405 (23633)
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS1_2015-09
+        Latitude: 49.042645
+        Longitude: -123.31744
+        Depth: 168 m
+        Date from: 14-Sep-2015 19:49:25
+        Date to: 08-Oct-2016 01:59:36
+      Filename Prefix: JASCOAMARHYDROPHONE2405
+    Device: JASCO M36 Hydrophone 2406 (23634)
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS1_2015-09
+        Latitude: 49.042645
+        Longitude: -123.31744
+        Depth: 168 m
+        Date from: 14-Sep-2015 19:49:25
+        Date to: 08-Oct-2016 01:59:36
+      Filename Prefix: JASCOAMARHYDROPHONE2406
+    Device: Ocean Sonics icListen HF Hydrophone 1560 (24346)
+      Properties:
+        - Acceleration X
+        - Acceleration Y
+        - Acceleration Z
+        - Battery Capacity
+        - Battery Charge
+        - Battery Charge Percent
+        - Battery Charge Status
+        - Battery Current
+        - Battery Temperature
+        - Battery Voltage
+        - Board Voltage
+        - Internal Humidity
+        - Internal Temperature
+        - Magnetic Flux Density X
+        - Magnetic Flux Density Y
+        - Magnetic Flux Density Z
+        - Microprocessor Voltage
+        - PPS Counter
+        - PPS Sync Status
+        - System Time
+        - System Time Status
+        - Time Sync Offset
+      Site:
+        Name: VIP-18-SH
+        Latitude: 49.0432258
+        Longitude: -123.3161375
+        Depth: 163 m
+        Date from: 01-Oct-2018 17:11:11
+        Date to: 03-Mar-2020 22:32:12
+      Filename Prefix: ICLISTENHF1560
+
+
+
+Location: EastPoint
+	Directory: /data/audio/SIMRES/EastPoint
+		Notes:
+			- 1288 files
+			- 07/07/2016 to 07/29/2016
+			- 57.6 MB size
+			- 5 minutes length
+			- Source: Saturna Island Marine Research
+			- Description: Continuous audio recordings, not processed (no detectors run etc.)
+			- Location: East Point
+			- Water depth: 27m
+			- Coordinates: 48°46.8250′, -123°03.0900′
+			- .WAV
+				- Codec: PCM S24 LE (s24l)
+				- Channels: Mono
+				- Sample Rate: 64000Hz
+			- https://simres.ca/projects/hydrophones/
+
+Location: Lime Kiln State Park
+  Directory: SMRU/LimeKiln_DFO_Classifier/Biggs
+    Notes:
+      - 351 files
+      - 08/07/2019 to 10/15/2019
+      - 7.7 MB size
+      - 1 minutes length
+      - Source: SMRU Consulting Ltd.
+      - Description: Select audio recordings containing verified TRUE positives of Biggs KW detections
+      - Location: Lime Kiln State Park
+      - Coordinates: 48.51560, -123.15344
+      - Depth: 7m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 64000Hz
+Location: Lime Kiln State Park
+  Directory: SMRU/LimeKiln_DFO_Classifier/Humpback
+    Notes:
+      - 810 files
+      - 10/12/2016 to 12/30/2019
+      - 7.7 MB size
+      - 1 minutes length
+      - Source: SMRU Consulting Ltd.
+      - Description: Select audio recordings containing verified TRUE positives of Humpback whale detections
+      - Location: Lime Kiln State Park
+      - Coordinates: 48.51560, -123.15344
+      - Depth: 7m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 64000Hz
+
+Location: Lime Kiln State Park
+  Directory: SMRU/LimeKiln_DFO_Classifier/SRKW
+    Notes:
+      - 1633 files
+      - 08/29/2018 to 10/16/2019
+      - 7.7 MB size
+      - 1 minutes length
+      - Source: SMRU Consulting Ltd.
+      - Description: Select audio recordings containing verified TRUE positives of Southern Resident Killer Whale detections
+      - Location: Lime Kiln State Park
+      - Coordinates: 48.51560, -123.15344
+      - Depth: 7m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 64000Hz
+
+

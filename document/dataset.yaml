@@ -1,0 +1,28 @@
+Location: Robert's Bank
+	Directory: JASCO/RobertsBank/false
+	  Device: JASCO M36 Hydrophone 2402 (23631) Details
+      Site:
+        Name: SoGEast_JascoAMARArray_ULS1_2015-09
+        Latitude: 49.042645
+        Longitude: -123.31744
+        Depth: 168 # In meter
+        Date_from: 14-Sep-2015 19:49:25
+        Date_to: 08-Oct-2016 01:59:36
+      Notes:
+        Number of Files: 698 files
+        Start_Record_Date: 09/21/2015 #local time of the location mentioned below
+        End_Record_Date: 04/03/2018
+        Total_size: 57.6 #in MB
+        File_duration: 5 # Single wave file duration in mintues
+        Source: JASCO/ONC
+        Description: Full-length audio files which contain verified FALSE positives
+        Location: Robert's Bank
+        Coodinates:
+          Latitude: 49.042645
+          Longitude: -123.31744
+        Water_depth: 168m
+        File_type: .WAV
+        Codec: PCM S24 LE (s24l)
+        Channels: Mono
+        Sample_Rate: 64000 Hz
+        URL: https://data.oceannetworks.ca/DeviceListing?DeviceId=23631

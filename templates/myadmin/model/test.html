@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dialog" data-action="add-record">添加数据</button>
+  <div class="modal fade" id="dialog" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">对话框</h4>
+        </div>
+        <div class="modal-body">
+          <p><i class="icon-spinner icon-spin"></i> 加载中...</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="submit" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+//对话框
+$('#dialog').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var action = button.data('action');
+  var modal = $(this);
+  switch(action)
+  {
+    case 'add-record':
+      //这里插入获取数据的代码
+      //...
+      modal.find('.modal-title').text('添加数据');
+      modal.find('.modal-body').html('此处写入接收的json数据');
+    break;
+  }
+})
+</script>
+
+</body>
+</html>

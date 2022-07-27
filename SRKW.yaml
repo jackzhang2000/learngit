@@ -1,0 +1,16 @@
+Location: Lime Kiln State Park
+  Directory: SMRU/LimeKiln_DFO_Classifier/SRKW
+    Notes:
+      - 1633 files
+      - 08/29/2018 to 10/16/2019
+      - 7.7 MB size
+      - 1 minutes length
+      - Source: SMRU Consulting Ltd.
+      - Description: Select audio recordings containing verified TRUE positives of Southern Resident Killer Whale detections
+      - Location: Lime Kiln State Park
+      - Coordinates: 48.51560, -123.15344
+      - Depth: 7m
+      - .WAV
+        - Codec: PCM S24 LE (s24l)
+        - Channels: Mono
+        - Sample Rate: 64000Hz

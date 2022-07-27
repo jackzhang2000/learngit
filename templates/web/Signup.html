@@ -1,0 +1,363 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HALLO Data Portal</title>
+  <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
+
+  <style type="text/css">
+    body {
+      min-height: 2000px;
+      padding-top: 70px;
+    }
+
+    .navbar-default {
+      background-color: #ff8800;
+      border-color: #e7e7e7;
+    }
+
+    .navbar-default .navbar-brand {
+      color: #fff;
+    }
+
+    .navbar-default .navbar-nav>li>a,
+    .navbar-default .navbar-nav>li>a:visited {
+      color: #fff;
+      width: 100px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .navbar-default .navbar-nav>.active>a,
+    .navbar-default .navbar-nav>.active>a:visited,
+    .navbar-default .navbar-nav li a:hover,
+    .navbar-default .navbar-nav>.active>a:hover,
+    .navbar-default .navbar-nav li a:active {
+      color: #fff;
+      background-color: #FF4500;
+      width: 100px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    table tr td {
+      font-size: 11px;
+    }
+
+    table tr td.price {
+      color: red;
+    }
+
+    table tr td.num span {
+      color: red;
+      padding: 0px 5px
+    }
+
+    table tr td.num i {
+      border-width: 0px;
+      background-color: #ddd;
+    }
+
+    div.shoplist div.bn {
+      font-size: 12px;
+      line-height: 25px;
+    }
+
+    div.shoplist div.bn span.price {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 页头导航开始 -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+          <span style="font-weight:bold;">HALLO Data Portal</span>
+          <span style="font-size:14px;"></span></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+					<li><a href="/web/">Datasets</a></li>
+					<li><a href="{% url 'web_models_index' 1 %}">Benchmarks</a></li>
+          <li><a href="{% url 'web_help' %}">Help</a></li>
+					<li><a href="{% url 'web_about' %}">About</a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../navbar/"><span class="glyphicon glyphicon-user" aria-hidden="true">{{request.session.webuser.username}}</a></li>
+            <li>{% if request.session.webuser.username %}
+              <a href="{% url 'web_logout' %}">Log off</a>
+            {% else %}
+            <a href="{% url 'web_login' %}">Log In</a>
+            {% endif %}</li>			
+            <li  class="active"><a href="{% url 'web_signup' %}">Sign Up</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+  <!-- 页头导航结束 -->
+  <!-- Content Header (Page header) -->
+  <!-- 页面主体开始 -->
+  <div class="container">
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h2 class="box-title"> <span class="glyphicon glyphicon-calendar" aria-hidden="true">User Signup</h2>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" action="{% url 'web_user_insert' %}" method="post">
+              {% csrf_token %}
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">User Name</label>
+
+                  <div class="col-sm-4">
+                    <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="User Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Password</label>
+
+                  <div class="col-sm-4">
+                    <input type="password" name="password" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Repeat Password</label>
+
+                  <div class="col-sm-4">
+                    <input type="password" name="repassword" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+                <div class="col-sm-4">
+                  <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Institution</label>
+                <div class="col-sm-4">
+                  <input type="text" name="institution" class="form-control" id="institution" placeholder="Dalhousie University">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Country</label>
+                <div class="col-sm-4">
+                  <input type="text" name="country" class="form-control" id="country" placeholder="Canada">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-4">
+                  <input type="text" name="address" class="form-control" id="address" placeholder="87 Bently Street, Halifax, NS B3S 0C4">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Job</label>
+                <div class="col-sm-4">
+                  <select name="job" class="form-control select2" style="width: 100%;">
+                    <option value="Student">Student</option>
+                    <option value="Research Scientist">Research Scientist</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Educational Faculty">Educational Faculty</option>
+                    <option value="Businessman">Businessman</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+              </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Visit Purpose</label>
+              <div class="col-sm-4">
+                  <select name="purpose" class="form-control select2" style="width: 100%;">
+                    <option value="Academic Research">Academic Research</option>
+                    <option value="Personal Interest">Personal Interest</option>
+                    <option value="Business">Business</option>
+                    <option value="Others">Others</option>
+                  </select>
+              </div>
+            </div>
+
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
+                  <button type="reset" class="btn btn-default">Reset</button>
+                  <div class="col-sm-offset-2 col-sm-10">
+                  </div>
+                  <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    d3.text("/static/uploads/annotation/{{ annotation.File_name }}", function (data) {
+      var parsedCSV = d3.csv.parseRows(data).slice(0, 10);
+      var container = d3.select("#dvCSV")
+        .append("table")
+        .selectAll("tr")
+        .data(parsedCSV).enter()
+        .append("tr")
+        .selectAll("td")
+        .data(function (d) { return d; }).enter()
+        .append("td")
+        .text(function (d) { return d; });
+    });
+  </script>
+
+  <script>
+    $(function () {
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        // 获取已激活的标签页的名称
+        var activeTab = $(e.target).text();
+        // 获取前一个激活的标签页的名称
+        var previousTab = $(e.relatedTarget).text();
+        $(".active-tab span").html(activeTab);
+        $(".previous-tab span").html(previousTab);
+      });
+    });
+  </script>
+
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+
+  </section>
+  </div>
+  <!-- 页面主体结束 -->
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <tr>
+              <th>ID</th>
+              <th>Dataset Name</th>
+              <th>单价</th>
+              <th>数量</th>
+              <th>小计</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>梅菜扣肉+番茄鸡蛋</td>
+              <td>25</td>
+              <td>2</td>
+              <td>50</td>
+              <td>正常</td>
+              <td><button>删除</button></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>肉沫酸豆角</td>
+              <td>15</td>
+              <td>1</td>
+              <td>15</td>
+              <td>正常</td>
+              <td><button>删除</button></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!--button type="button" class="btn btn-primary">保存</button-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'web/js/jquery.min.js' %}"></script>
+  <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+  <script>
+    //执行订单处理(下订单)
+    function dosubmit() {
+      //获取要提交的数据
+      var ptype = $("input[name='ptype']:checked").val();
+      var bank = $("input[name='bank']:checked").val();
+      //alert(ptype+":"+bank);
+      //执行ajax提交订单
+      $.ajax({
+        type: "get",
+        url: "{% url 'web_orders_insert' %}",
+        dataType: "text",
+        data: { ptype: ptype, bank: bank },
+        success: function (res) {
+          if (res == "Y") {
+            alert("Query completed, please check below result！");
+            window.location.href = "{% url 'web_index' %}";
+          } else {
+            alert("Query completed, please check below result！");
+          }
+        }
+      });
+    }
+    function doShow(id) {
+      $.ajax({
+        type: 'get',
+        url: "{% url 'web_orders_detail' %}",
+        dataType: 'text',
+        data: { oid: id },
+        async: false,
+        success: function (res) {
+          $("#myModal div.modal-body").empty().append(res);
+          $('#myModal').modal({ keyboard: false })
+        },
+      });
+    }
+
+    function doChangeStatus(id, s) {
+      var info = ["", "", "确定要删除订单吗？", "确定要完成此订单吗？"];
+      if (window.confirm(info[s])) {
+        $.get("{% url 'web_orders_status' %}", { oid: id, status: s }, function (data) {
+          if (data == "Y") {
+            $("tr.oid" + id).remove();
+          } else {
+            alert("订单处理失败！");
+          }
+        }, 'text');
+      }
+    }
+
+  </script>
+</body>
+
+</html>

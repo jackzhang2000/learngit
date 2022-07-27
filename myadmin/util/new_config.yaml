@@ -1,0 +1,5 @@
+  Name: gps
+  host: 127.0.0.1
+  password: root#123!
+  port: 3306
+  user: server

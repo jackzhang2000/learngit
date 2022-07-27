@@ -1,0 +1,141 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HALLO Data Portal</title>
+  <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyC-7ZCqywqSbMdbu_NcKeK9oKDLsWQgoA0" type="text/javascript"></script>
+  <style type="text/css">
+    body {
+      min-height: 2000px;
+      padding-top: 70px;
+    }
+
+    .navbar-default {
+      background-color: #ff8800;
+      border-color: #e7e7e7;
+    }
+
+    .navbar-default .navbar-brand {
+      color: #fff;
+    }
+
+    .navbar-default .navbar-nav>li>a,
+    .navbar-default .navbar-nav>li>a:visited {
+      color: #fff;
+      width: 100px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .navbar-default .navbar-nav>.active>a,
+    .navbar-default .navbar-nav>.active>a:visited,
+    .navbar-default .navbar-nav li a:hover,
+    .navbar-default .navbar-nav>.active>a:hover,
+    .navbar-default .navbar-nav li a:active {
+      color: #fff;
+      background-color: #FF4500;
+      width: 100px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    table tr td {
+      font-size: 11px;
+    }
+
+    table tr td.price {
+      color: red;
+    }
+
+    table tr td.num span {
+      color: red;
+      padding: 0px 5px
+    }
+
+    table tr td.num i {
+      border-width: 0px;
+      background-color: #ddd;
+    }
+
+    div.shoplist div.bn {
+      font-size: 12px;
+      line-height: 25px;
+    }
+
+    div.shoplist div.bn span.price {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 页头导航开始 -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+          <span style="font-weight:bold;">HALLO Data Portal</span>
+          <span style="font-size:14px;"></span></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'web_index'%}">Datasets</a></li>
+					<li><a href="{% url 'web_models_index' 1 %}">Benchmarks</a></li>
+          <li><a href="{% url 'web_help' %}">Help</a></li>
+          <li class="active"><a href="{% url 'web_about' %}">About</a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true">{{request.session.webuser.username}}</a></li>
+            <li>{% if request.session.webuser.username %}
+              <a href="{% url 'web_logout' %}">Log off</a>
+            {% else %}
+            <a href="{% url 'web_login' %}">Log In</a>
+            {% endif %}</li>			
+            <li><a href="{% url 'web_signup' %}">Sign Up</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+  <!-- 页头导航结束 -->
+  <!-- Content Header (Page header) -->
+  <!-- 页面主体开始 -->
+  <div class="container">
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h2 class="box-title"> 
+                About HALLO Project and Data Portal</h2>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+
+    </section>
+  </div>
+  
+</body>
+
+</html>

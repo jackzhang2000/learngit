@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Create Object from JSON String</h2>
+
+    <p id="demo"></p>
+    <!---
+    <script>
+        let text = '{"employees":[' +
+            '{"firstName":"John","lastName":"Doe" },' +
+            '{"firstName":"Anna","lastName":"Smith" },' +
+            '{"firstName":"Peter","lastName":"Jones" }]}';
+
+        const obj = JSON.parse(text);
+        document.getElementById("demo").innerHTML =
+            obj.employees[1].firstName + " " + obj.employees[1].lastName;
+    </script>-->
+
+    <input type="file" id="fileInput">
+    <script>
+        //Json file parsing
+        document.getElementById("fileInput").addEventListener('change', function selectedFileChanaged() {
+            if (this.files.length == 0) {
+                alert('Please select a valid file');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function fileReadCompleted() {
+                //alert(reader.result);
+                text = reader.result
+                //var obj1 = jsyaml.load( text );
+                //alert( obj1 );
+                //var jsonString = JSON.stringify(obj1);
+                const obj = JSON.parse(text);
+                document.getElementById("demo").innerHTML =
+                    '1: Location' + obj.Location + " " + obj.Ecotype
+                    + '<br>' +
+                    '2: Ecotype' + obj.Name + '<br>' +
+                    '3: ' + obj.URL + '<br>' ;
+            };
+            reader.readAsText(this.files[0]);
+        });
+    </script>
+
+
+</body>
+
+</html>

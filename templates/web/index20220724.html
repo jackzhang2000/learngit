@@ -1,0 +1,485 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>HALLO Data Portal</title>
+	<link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'web/css/common.css' %}">
+	<script src="http://maps.google.com/maps/api/js?key=AIzaSyC-7ZCqywqSbMdbu_NcKeK9oKDLsWQgoA0" type="text/javascript"></script>
+	<style type="text/css">
+		body {
+			min-height: 2000px;
+			padding-top: 70px;
+		}
+
+		.navbar-default {
+			background-color: #ff8800;
+			border-color: #e7e7e7;
+		}
+
+		.navbar-default .navbar-brand {
+			color: #fff;
+		}
+
+		.navbar-default .navbar-nav>li>a,
+		.navbar-default .navbar-nav>li>a:visited {
+			color: #fff;
+			width: 100px;
+			font-size: 14px;
+			text-align: center;
+		}
+
+		.navbar-default .navbar-nav>.active>a,
+		.navbar-default .navbar-nav>.active>a:visited,
+		.navbar-default .navbar-nav li a:hover,
+		.navbar-default .navbar-nav>.active>a:hover,
+		.navbar-default .navbar-nav li a:active {
+			color: #fff;
+			background-color: #FF4500;
+			width: 100px;
+			font-size: 14px;
+			text-align: center;
+		}
+
+		table tr td {
+			font-size: 11px;
+		}
+
+		table tr td.price {
+			color: red;
+		}
+
+		table tr td.num span {
+			color: red;
+			padding: 0px 5px
+		}
+
+		table tr td.num i {
+			border-width: 0px;
+			background-color: #ddd;
+		}
+
+		div.shoplist div.bn {
+			font-size: 12px;
+			line-height: 25px;
+		}
+
+		div.shoplist div.bn span.price {
+			color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 页头导航开始 -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">
+					<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+					<span style="font-weight:bold;">HALLO Data Portal</span>
+					<span style="font-size:14px;"></span></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/web/">Datasets</a></li>
+					<li><a href="{% url 'web_models_index' 1 %}">Benchmarks</a></li>
+					<li><a href="{% url 'web_help' %}">Help</a></li>
+					<li><a href="{% url 'web_about' %}">About</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true">{{request.session.webuser.username}}</a></li>
+					<li>{% if request.session.webuser.username %}
+						<a href="{% url 'web_logout' %}">Log off</a>
+					{% else %}
+					<a href="{% url 'web_login' %}">Log In</a>
+					{% endif %}</li>			
+					<li><a href="{% url 'web_signup' %}">Sign Up</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	<!-- 页头导航结束 -->
+
+	<!-- 页面主体开始 -->
+	<div class="container" style="display: flex, flex-wrap: wrap">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-warning">
+					<div class="panel-heading"><span class="glyphicon glyphicon glyphicon-search"
+							aria-hidden="true"></span>
+						Filter Datasets
+					</div>
+					<form action="{% url 'web_index' %}" method="get">
+					<li class="list-group-item">
+						<b>Keywords: &nbsp; </b>
+						<input type="text" id="keyword" name="keyword" />
+					</li>
+					<li class="list-group-item">
+						<table class="table table-striped">
+							<colgroup>
+								<col span="1" style="width: 15%;">
+								<col span="1" style="width: 10%;">
+								<col span="1" style="width: 5%;">
+								<col span="1" style="width: 10%;">
+								<col span="1" style="width: 10%;">
+								<col span="1" style="width: 10%;">
+							 </colgroup>
+							<tr>
+								<th>Species<br>
+									{% for idx, y in species %}
+    									<input type="checkbox" id="{{ idx }}" name="{{ idx }}" value="{{ y }}">
+  										<label for="{{ idx }}">{{ y }}</label><br>
+    								{% endfor %}
+									<br>
+  								</th>
+								<th>Ecotypes<br>
+									{% for idx, y in ecotype %}
+    									<input type="checkbox" id="{{ idx }}" name="{{ idx }}" value="{{ y }}">
+  										<label for="{{ idx }}">{{ y }}</label><br>
+    								{% endfor %}
+									<br>
+  								</th>
+								<th><b>Pods</b><br>
+									{% for idx, y in pods %}
+    									<input type="checkbox" id="{{ idx }}" name="{{ idx }}" value="{{ y }}">
+  										<label for="{{ idx }}">{{ y }}</label><br>
+    								{% endfor %}
+									<br>
+								</th>
+								<th><b>Call Type</b><br>
+									<input type="checkbox" id="calltype0" name="calltype0" value="S1">
+									<label for="vehicle1">S1</label><br>
+									<input type="checkbox" id="calltype1" name="calltype1" value="S2">
+									<label for="vehicle2"> S2</label><br>
+									<input type="checkbox" id="calltype2" name="calltype2" value="S3">
+									<label for="vehicle3"> S3</label><br>
+									<input type="checkbox" id="calltype3" name="calltype3" value="S4">
+									<label for="vehicle3"> S4</label><br>
+									<input type="checkbox" id="calltype4" name="calltype4" value="S5">
+									<label for="vehicle2"> S5</label><br>
+									<input type="checkbox" id="calltype5" name="calltype5" value="S6">
+									<label for="vehicle3"> S6</label><br>
+									<input type="checkbox" id="calltype6" name="calltype6" value="S7">
+									<label for="vehicle3"> S7</label><br>
+								</th>
+								<th><br>
+									<input type="checkbox" id="calltype7" name="vehicle1" value="S8">
+									<label for="vehicle1"> S8</label><br>
+									<input type="checkbox" id="calltype8" name="vehicle2" value="S9">
+									<label for="vehicle2"> S9</label><br>
+									<input type="checkbox" id="calltype9" name="vehicle3" value="S10">
+									<label for="vehicle3"> S10</label><br>
+									<input type="checkbox" id="calltype10" name="vehicle3" value="S18">
+									<label for="vehicle3"> S18</label><br>
+									<input type="checkbox" id="calltype11" name="vehicle2" value="S19">
+									<label for="vehicle2"> S19</label><br>
+									<input type="checkbox" id="calltype12" name="vehicle3" value="S26">
+									<label for="vehicle3"> S26</label><br>
+									<input type="checkbox" id="calltype0" name="vehicle3" value="S44">
+									<label for="vehicle3"> S44</label><br>
+								</th>
+								<th><br>
+									<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+									<label for="vehicle1"> T1</label><br>
+									<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+									<label for="vehicle2"> T2</label><br>
+									<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+									<label for="vehicle3"> T3</label><br>
+									<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+									<label for="vehicle3"> T4</label><br>
+									<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+									<label for="vehicle2"> T8</label><br>
+									<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+									<label for="vehicle3"> T7</label><br>
+									<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+									<label for="vehicle3"> T13</label><br>
+								</th>
+
+
+							</tr>
+						</table>
+					</li>
+					
+						<label for="inputEmail3" class="col-sm-2 control-label">Start of Record(local time)</label>
+              <div class="col-sm-4">
+                <input type="datetime-local" id="Datetimelocalfrom" name="Datetimelocalfrom" value="2018-06-12T08:30">
+              </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">End of Record(local time)</label>
+              <div class="col-sm-4">
+                <input type="datetime-local" id="Datetimelocalto" name="Datetimelocalto" value="2019-06-12T19:30">
+              </div>
+					
+					<br>
+					<br>
+					<li class="list-group-item">
+						<b>Coarse Annotation</b>
+						<input type="radio" id="anno_type" name="anno_type" value="2">
+						<b> &nbsp; &nbsp; Detailed Annotation</b>
+						<input type="radio" id="anno_type" name="anno_type" value="1">
+					</li>
+
+
+					<div class="panel-footer" style="height:50px">
+
+						<button type="submit" onclick="dosubmit()" class="btn btn-warning"
+							style="width:100px;float:right">Filter</button>
+						<button type="button" onclick="window.location='{% url 'web_cart_clear' %}'"
+							class="btn btn-danger" style="width:60px;float:right;margin-right:20px;"> Clear </button>
+					</div>
+				</form>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<!--标签页内容-->
+				<div class="panel panel-warning">
+					<div class="panel-heading"><span class="glyphicon glyphicon-list-alt"
+							aria-hidden="true"></span>
+						Datasets Available
+					<a type="button" href="{{url}}"  class="btn btn-warning btn-sm">Refresh</a>
+                </div>
+                <table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>DataSet Name</th>
+						<th>Location</th>
+						<th>Species</th>
+						<th>Ecotype</th>
+						<th>Pods</th>
+						<th>Calltype</th>
+						<th>Total Size</th>
+						<th>Annotation Type</th>
+						<th>Record End</th>
+						<th>Operation</th>
+					  </tr>
+					  
+					  {% for vo in datasetlist %}
+            <tr>
+              <td>{{ vo.ID }}</td>
+              <td>{{ vo.Dataset_Name }}</td>
+              <td>{{ vo.Location }}</td>
+              <td>{{ vo.Species_identified }}</td>
+			  <td>{{ vo.Ecotype }}</td>
+			  <td>{{ vo.Pods }}</td>
+			  <td>{{ vo.Calltype }}</td>
+              <td>{{ vo.Total_Size }}</td>
+              <td>{% if vo.Annotation_type == 1 %}
+                <span style="color:green">Detailed Annotation</span>
+                {% elif vo.Annotation_type == 2 %}
+                <span style="color:red">Coarse Annotation</span>
+                {% endif %}</td>
+              <td width="10%">{{ vo.record_end|date:'Y-m-d H:i:s' }}</td>
+              <td width="10%">
+                <a href="{% url 'web_dataset_detail' vo.ID %}" class="btn btn-warning btn-xs" role="button"><span
+                    class="glyphicon glyphicon-search" aria-hidden="true"></span> Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+					  
+                </table>
+					
+				</div>
+				<!-- /.box-body -->
+				<div class="box-footer clearfix">
+					  <ul class="pagination pagination-sm no-margin pull-right">
+						<li><a href="{% url 'web_index' pIndex|add:-1 %}">&laquo;</a></li>
+						{% for p in plist %}
+						  <li {% if pIndex == p %}class="active"{% endif %}><a href="{% url 'web_index' p %}">{{ p }}</a></li>
+						{% endfor %}
+						<li><a href="{% url 'web_index' pIndex|add:1 %}">&raquo;</a></li>
+					  </ul>
+				  </div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-warning">
+					<div class="panel-heading"><span class="glyphicon glyphicon-shopping-cart"
+							aria-hidden="true"></span>
+						Filtered Datasets Location
+					</div>
+
+
+					<br>
+					<div id="map" style="width: 800px; height: 400px;"></div>
+					<br>
+					<table class="table table-striped">
+						<tr>
+							<th>ID</th>
+							<th>DataSet Name</th>
+							<th>Latitude</th>
+							<th>Latitude</th>
+						  </tr>
+						  
+						  {% for vo in datasetlist %}
+				<tr>
+				  <td>{{ vo.ID }}</td>
+				  <td>{{ vo.Dataset_Name }}</td>
+				  <td>{{ vo.Latitude }}</td>
+				  <td>{{ vo.Longitude }}</td>
+				</tr>
+				{% endfor %}
+						  
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 页面主体结束 -->
+	    <!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  </div>
+				<div class="modal-body">
+				  <table class="table table-hover">
+					  <tr>
+						  <th>ID</th>
+						  <th>Dataset Name</th>
+						  <th>单价</th>
+						  <th>数量</th>
+						  <th>小计</th>
+						  <th>状态</th>
+						  <th>操作</th>
+					  </tr>
+					  <tr>
+						  <td>1</td>
+						  <td>梅菜扣肉+番茄鸡蛋</td>
+						  <td>25</td>
+						  <td>2</td>
+						  <td>50</td>
+						  <td>正常</td>
+						  <td><button>删除</button></td>
+					  </tr>
+					  <tr>
+						  <td>2</td>
+						  <td>肉沫酸豆角</td>
+						  <td>15</td>
+						  <td>1</td>
+						  <td>15</td>
+						  <td>正常</td>
+						  <td><button>删除</button></td>
+					  </tr>
+				  </table>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  <!--button type="button" class="btn btn-primary">保存</button-->
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+	<script src="{% static 'web/js/jquery.min.js' %}"></script>
+	<script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+	<script>
+		//执行订单处理(下订单)
+		function dosubmit() {
+			//获取要提交的数据
+			var ptype = $("input[name='ptype']:checked").val();
+			var bank = $("input[name='bank']:checked").val();
+			//alert(ptype+":"+bank);
+			//执行ajax提交订单
+			$.ajax({
+				type: "get",
+				url: "{% url 'web_orders_insert' %}",
+				dataType: "text",
+				data: { ptype: ptype, bank: bank },
+				success: function (res) {
+					if (res == "Y") {
+						alert("Query completed, please check below result！");
+						window.location.href = "{% url 'web_index' %}";
+					} else {
+						alert("Query completed, please check below result！");
+					}
+				}
+			});
+		}
+		function doShow(id){ 
+            $.ajax({
+                type:'get',
+                url:"{% url 'web_orders_detail' %}",
+                dataType:'text',
+                data:{oid:id},
+                async: false,
+                success:function(res){
+                    $("#myModal div.modal-body").empty().append(res);
+                    $('#myModal').modal({keyboard:false})
+                },
+            });
+        }
+
+        function doChangeStatus(id,s){
+            var info = ["","","确定要删除订单吗？","确定要完成此订单吗？"];
+            if(window.confirm(info[s])){
+                $.get("{% url 'web_orders_status' %}",{oid:id,status:s},function(data){
+                    if(data == "Y"){
+                        $("tr.oid"+id).remove();
+                    }else{
+                        alert("订单处理失败！");
+                    }
+                },'text');
+            }
+        }
+
+	</script>
+	
+	<script type="text/javascript">
+		var locations = [
+		['SoGEast_JascoAMARArray_ULS1_2019-09', 49.0426459, -124.317442],
+		['SoGEast_JascoAMARArray_20220418', 48.0426459, -125.317442],
+		['Jasco Roberts Bank 2', 43.0426459, -126.317442],
+			['DFO2', 43.0426459, -124.317442],
+		  ['SoGEast_JascoAMARArray_ULS1_2015-09',  49.042645, -123.31744],
+		  ['Barkley_Canyon_KW', 48.042645, -124.317442],
+		  ['Jasco boundary Pass1', 47.0426459, -124.317442],
+		  ['SMRU',  49.042645, -123.31744],
+		  ['DFO2', 46.042645, -125.317442],
+		  ['Jasco Roberts Bank', 42.0426459, -124.317442],
+		  ['Victoria', 48.4284, -123.3656]
+		];
+		
+		var map = new google.maps.Map(document.getElementById('map'), {
+		  zoom: 5,
+		  center: new google.maps.LatLng(48.042645, -124.317442),
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+		
+		var infowindow = new google.maps.InfoWindow();
+	
+		var marker, i;
+		
+		for (i = 0; i < locations.length; i++) {  
+		  marker = new google.maps.Marker({
+			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+			map: map
+		  });
+		  
+		  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+			  infowindow.setContent(locations[i][0]);
+			  infowindow.open(map, marker);
+			}
+		  })(marker, i));
+		}
+	  </script>
+</body>
+
+</html>

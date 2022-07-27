@@ -1,0 +1,269 @@
+{% extends "myadmin/base.html" %}
+
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Dataset Management
+    <small>Halo Data Portal</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>
+    <li class="active">Add Dataset</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h2 class="box-title"><span class="glyphicon glyphicon-calendar" aria-hidden="true">Add Dataset</h2>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" action="{% url 'myadmin_dataset_insert' %}" method="post"
+          enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="box-body">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-4">
+                <input type="text" name="datasetname" class="form-control" id="datasetname"
+                  placeholder="" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Number of Files</label>
+              <div class="col-sm-4">
+                <input type="text" name="numoffiles" class="form-control" id="numoffiles" placeholder="20" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Species Identified</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="speciesidf" id="speciesidf"
+                  placeholder="Whale;Dolphin"></input>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Ecotype</label>
+              <div class="col-sm-4">
+                <input type="text" name="ecotype" class="form-control" id="ecotype"
+                  placeholder="Southern Resident;Transient;Northern Resident" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Pods</label>
+              <div class="col-sm-4">
+                <input type="text" name="pods" class="form-control" id="pods" placeholder="J:K:L" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Calltype</label>
+              <div class="col-sm-4">
+                <input type="text" name="calltype" class="form-control" id="calltype" placeholder="S4:S17:S44:S1" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Location</label>
+              <div class="col-sm-4">
+                <input type="text" name="location" class="form-control" id="location" placeholder="British Columbia" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Latitude</label>
+              <div class="col-sm-4">
+                <input type="text" name="latitude" class="form-control" id="latitude" placeholder="51.5072° N" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Longitude</label>
+              <div class="col-sm-4">
+                <input type="text" name="longitude" class="form-control" id="longitude" placeholder="0.1276° W" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Depth</label>
+              <div class="col-sm-4">
+                <input type="text" name="depth" class="form-control" id="depth" placeholder="20 meters" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Start Record Datetime(local)</label>
+              <div class="col-sm-4">
+                <input type="datetime-local" id="Datetimelocalfrom" name="Datetimelocalfrom" value="2018-06-12T08:30">
+              </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">End Record Datetime(local)</label>
+              <div class="col-sm-4">
+                <input type="datetime-local" id="Datetimelocalto" name="Datetimelocalto" value="2019-06-12T19:30">
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Depth</label>
+              <div class="col-sm-4">
+                <input type="text" name="depth" class="form-control" id="depth" placeholder="20 meters" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_Species</label>
+              <div class="col-sm-3">
+                <input type="file" name="Summary_by_Species" />
+              </div>
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_Ecotypes</label>
+              <div class="col-sm-3">
+                <input type="file" name="Summary_by_Ecotypes" />
+              </div>
+            </div>
+            &nbsp &nbsp &nbsp &nbsp &nbsp You may input the actual file name on Data server instead of uploading images,
+            e.g.: /data/Jasco20220325_sum_byspec.jpg (Linux) or
+            D:\Work\Dalhousie\halo\Jasco20220325_sum_byspec.jpg (Windows)
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Summary_by_Species image on the server</label>
+              <div class="col-sm-3">
+                <input type="text" name="Sum_by_Speciesonsvr" class="form-control" id="Sum_by_Speciesonsvr"
+                  placeholder="/data/Jasco20220325_sum_byspec.jpg" />
+
+              </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">Summary_by_Ecotypes image on the server</label>
+              <div class="col-sm-3">
+                <input type="text" name="Sum_by_Ecotypeonsvr" class="form-control" id="Sum_by_Ecotypeonsvr"
+                  placeholder="/data/Jasco20220325_sum_byeco.jpg" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_Pods</label>
+              <div class="col-sm-3">
+                <input type="file" name="Summary_by_Pods" />
+              </div>
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_CallType</label>
+              <div class="col-sm-3">
+                <input type="file" name="Summary_by_CallType" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Summary_by_Pods image on the server</label>
+              <div class="col-sm-3">
+                <input type="text" name="Sum_by_Podsonsvr" class="form-control" id="Sum_by_Podsonsvr"
+                  placeholder="/data/Jasco20220325_sum_Pods.jpg" />
+
+              </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">Summary_by_CallType image on the server</label>
+              <div class="col-sm-3">
+                <input type="text" name="Sum_by_CTypeonsvr" class="form-control" id="Sum_by_CTypeonsvr"
+                  placeholder="/data/Jasco20220325_sum_Calltype.jpg" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Load from YAML</label>
+              <div class="col-sm-4">
+                <input type="file" id="jsonfileInput" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Number of annotated events</label>
+              <div class="col-sm-4">
+                <input type="text" name="numofannoevent" class="form-control" id="numofannoevent" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Number of Subsets</label>
+              <div class="col-sm-4">
+                <input type="text" name="noofsubsets" class="form-control" id="noofsubsets" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Sampling rate(KHz)</label>
+              <div class="col-sm-4">
+                <input type="text" name="samplerate" class="form-control" id="samplerate" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">File duration(min)</label>
+              <div class="col-sm-4">
+                <input type="text" name="fileduration" class="form-control" id="fileduration" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">File size(MB)</label>
+              <div class="col-sm-4">
+                <input type="text" name="filesize" class="form-control" id="filesize" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Total size(MB)</label>
+              <div class="col-sm-4">
+                <input type="text" name="totalsize" class="form-control" id="totalsize" />
+              </div>
+            </div>
+          </div>
+
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Save</button> &nbsp;
+              <button type="reset" class="btn btn-default">Reset</button>
+              <div class="col-sm-offset-2 col-sm-10">
+              </div>
+              <!-- /.box-footer -->
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>
+<script>
+  //Json file parsing
+  document.getElementById("jsonfileInput").addEventListener('change', function selectedFileChanaged() {
+    if (this.files.length == 0) {
+      alert('Please select a valid file');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function fileReadCompleted() {
+      alert(reader.result);
+      text = reader.result
+      //var obj1 = jsyaml.load( text );
+      //alert( obj1 );
+      //var jsonString = JSON.stringify(obj1);
+      const obj = JSON.parse(text);
+      /*document.getElementById("demo").innerHTML =
+          '1: Location' + obj.Location + " " + obj.Ecotype
+          + '<br>' +
+          '2: Ecotype' + obj.Name + '<br>' +
+          '3: ' + obj.URL + '<br>' ;*/
+      document.getElementById('datasetname').value = obj.Name;//assign html form element value from json object
+      document.getElementById('numoffiles').value = obj.Noofile;//assign html form element value from json object
+      document.getElementById('speciesidf').value = obj.Species;//assign html form element value from json object
+      document.getElementById('ecotype').value = obj.Ecotype;//assign html form element value from json object
+      document.getElementById('pods').value = obj.Pods;//assign html form element value from json object
+      document.getElementById('calltype').value = obj.Calltype;//assign html form element value from json object
+      document.getElementById('location').value = obj.Location;//assign html form element value from json object
+      document.getElementById('latitude').value = obj.Latitude;//assign html form element value from json object
+      document.getElementById('longitude').value = obj.Longitude;//assign html form element value from json object
+      document.getElementById('depth').value = obj.Depth;//assign html form element value from json object
+      document.getElementById('Datetimelocalfrom').value = obj.Datetimelocalfrom;//assign html form element value from json object
+      document.getElementById('Datetimelocalto').value = obj.Datetimelocalto;//assign html form element value from json object
+      document.getElementById('numofannoevent').value = obj.Noofannoevent;//assign html form element value from json object
+      document.getElementById('noofsubsets').value = obj.Noofsubset;//assign html form element value from json object
+      document.getElementById('samplerate').value = obj.Samplerate;//assign html form element value from json object
+      document.getElementById('fileduration').value = obj.Fileduration;//assign html form element value from json object
+      document.getElementById('filesize').value = obj.Filesize;//assign html form element value from json object
+      document.getElementById('totalsize').value = obj.Totalsize;//assign html form element value from json object
+      document.getElementById('Sum_by_Speciesonsvr').value = obj.Sumbyspecies;//assign html form element value from json object
+      document.getElementById('Sum_by_Ecotypeonsvr').value = obj.Sumbyecotype;//assign html form element value from json object
+      document.getElementById('Sum_by_Podsonsvr').value = obj.Sumbypod;//assign html form element value from json object
+      document.getElementById('Sum_by_CTypeonsvr').value = obj.Sumbycalltype;//assign html form element value from json object
+
+    };
+    reader.readAsText(this.files[0]);
+  });
+</script>
+<!-- /.content -->
+{% endblock %}

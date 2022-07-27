@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Read YAML</title>
+                 <script src="//code.jquery.com/jquery-2.1.0.js">
+        </script><script src='js-yaml.js'>
+        </script><script src='readYaml.js'>
+    </script>
+    <script>
+        // YAML file to Javascript object
+            $.get( 'SRKW.yaml', function( text ) {
+                var obj = jsyaml.load( text );
+                alert( obj );
+            });
+        </script>
+        
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,107 @@
+# Submission information
+submission:
+  # Submission label
+  # Label is used to index submissions, to avoid overlapping codes among submissions
+  # use the following way to form your label:
+  # [Last name of author]_[Abbreviation of affiliation]_[Model abbreviation]_v[version number]
+  label: Frazao_MERIDIAN_KWD_v1
+
+  # Submission name
+  # This name will be used in the results tables when space permits
+  name: Killer whale detector
+
+  # Submission name abbreviated
+  # This abbreviated name will be used in the results table when space is tight, maximum 10 characters
+  abbreviation: kw_det
+
+  # Submission authors in order, mark one of the authors as corresponding author.
+  author:
+    lastname: Frazao
+    firstname: Fabio
+    email: fsfrazao@dal.ca                     # Contact email address
+ 
+  date: 2022-04-20   # submission date, YYYY-MM-DD
+   
+
+# Model information
+model:
+  # model description, meta data provided here will be used to do
+  # meta analysis of the submitted model. Use general level tags, if possible use the tags provided in comments.
+  # If information field is not applicable to the model, use "!!null".
+  description:
+
+    # Audio input
+    input_sampling_rate: 20               # In kHz
+
+    # Acoustic representation
+    acoustic_features: spectrogram   # e.g one or multiple [MFCC, log-mel energies, spectrogram, CQT, PCEN, ...]
+
+    # Data augmentation methods
+    data_augmentation: time stretching            # [time stretching, block mixing, pitch shifting, ...]
+
+    # Machine learning
+    # In case using ensemble methods, please specify all methods used (comma separated list).
+    machine_learning_method: template matching         # e.g one or multiple [GMM, HMM, SVM, kNN, MLP, CNN, RNN, CRNN, NMF, random forest, ensemble, transformer, ...]
+
+    # External data usage method
+    # e.g. directly, embeddings, pre-trained model, ...
+    external_data_usage: directly
+
+    # Post-processing, followed by the time span (in ms) in case of smoothing
+    post_processing: [peak picking, threshold]    # [median filtering, time aggregation...]  
+    
+    # Classification level
+    classification_level: species   # e.g. species, call_level, ecotype, pod, ...
+    
+    # Class labels
+    classes: KW   # [Other, KW, HB]
+
+  # System complexity, meta data provided here will be used to evaluate
+  # submitted systems from the computational load perspective.
+  complexity:
+
+    # Total amount of parameters used in the acoustic model. For neural networks, this
+    # information is usually given before training process in the network summary.
+    # For other than neural networks, if parameter count information is not directly available,
+    # try estimating the count as accurately as possible.
+    # In case of ensemble approaches, add up parameters for all subsystems.
+    total_parameters: variable    # note that for simple template matching, the "parameters"==the pixel count of the templates, plus 1 for each param such as thresholding. 
+    # Approximate training time followed by the hardware used
+    training_time: 
+    # Model size in MB
+    model_size: 100MB
+
+
+  # URL to the source code of the system [optional, highly recommended]
+  source_code:   
+
+  # List of external datasets used in the submission.
+  # A previous DCASE development dataset is used here only as example! List only external datasets
+  external_datasets:
+    # Dataset name
+    name: Jasco Dataset
+    # Dataset access url
+    url: http://dal.ca
+    # Total audio length in minutes
+    total_audio_length: 120 # minutes
+
+# System results 
+results:
+  # Provide accuracy score and figure file for as many test sets as possible
+  # If you cannot provide all result details, also incomplete results can be reported.
+  test_set_1: # test-set unique label
+    name: test_set_1
+    F_score: 1.22 # percentile
+    figure: figures/fig1.png
+  test_set_2:
+    name: test_set_2
+    F_score: 5.84 # percentile
+    figure: figures/fig2.png
+
+contents:
+  yaml_file: hallo.yaml #this file
+  ketos_model_file: kw_001.kt # ketos model file
+  python_script: run_model.py # python script for running model
+  description: readme.md # detailed description of the model
+  performance_figure: figures/*.png # figures showing performance on test sets
+    

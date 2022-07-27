@@ -1,0 +1,153 @@
+{% extends "myadmin/base.html" %}
+
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Dataset Management
+    <small>Halo Data Portal</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>
+    <li class="active">Add Dataset</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h2 class="box-title"><span class="glyphicon glyphicon-calendar" aria-hidden="true">Add Dataset</h2>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" action="{% url 'myadmin_dataset_insert' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="box-body">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-4">
+                <input type="text" name="datasetname" class="form-control" id="datasetname" placeholder="Jasco Roberts Bank" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Number of Files</label>
+              <div class="col-sm-4">
+                <input type="text" name="numoffiles" class="form-control" id="numoffiles" placeholder="20" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Species Identified</label>
+              <div class="col-sm-4">
+                <textarea class="form-control" name="speciesidf" id="speciesidf" rows="5">Species_identified</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Location</label>
+              <div class="col-sm-4">
+                <input type="text" name="location" class="form-control" id="location" placeholder="British Columbia" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Latitude</label>
+              <div class="col-sm-4">
+                <input type="text" name="latitude" class="form-control" id="latitude" placeholder="51.5072° N" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Longitude</label>
+              <div class="col-sm-4">
+                <input type="text" name="longitude" class="form-control" id="longitude" placeholder="0.1276° W" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Depth</label>
+              <div class="col-sm-4">
+                <input type="text" name="depth" class="form-control" id="depth" placeholder="20 meters" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_Species</label>
+              <div class="col-sm-3">
+                <input type="file" name="zip1" />
+              </div>
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_Ecotypes</label>
+              <div class="col-sm-3">
+                <input type="file" name="Summary_by_Ecotypes" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_Pods</label>
+              <div class="col-sm-3">
+                <input type="file" name="Summary_by_Pods" />
+              </div>
+              <label for="inputPassword3" class="col-sm-2 control-label">Summary_by_CallType</label>
+              <div class="col-sm-3">
+                <input type="file" name="Summary_by_CallType" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">Load from YAML</label>
+              <div class="col-sm-4">
+                <input type="file" name="yaml" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Number of annotated events</label>
+              <div class="col-sm-4">
+                <input type="text" name="numofannoevent" class="form-control" id="numofannoevent" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Number of Subsets</label>
+              <div class="col-sm-4">
+                <input type="text" name="noofsubsets" class="form-control" id="noofsubsets" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Sampling rate(KHz)</label>
+              <div class="col-sm-4">
+                <input type="text" name="samplerate" class="form-control" id="samplerate" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">File duration(min)</label>
+              <div class="col-sm-4">
+                <input type="text" name="fileduration" class="form-control" id="fileduration" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">File size(MB)</label>
+              <div class="col-sm-4">
+                <input type="text" name="filesize" class="form-control" id="filesize" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Total size(MB)</label>
+              <div class="col-sm-4">
+                <input type="text" name="totalsize" class="form-control" id="totalsize" />
+              </div>
+            </div>
+          </div>
+          
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Save</button> &nbsp;
+              <button type="reset" class="btn btn-default">Reset</button>
+              <div class="col-sm-offset-2 col-sm-10">
+              </div>
+              <!-- /.box-footer -->
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>
+<!-- /.content -->
+{% endblock %}

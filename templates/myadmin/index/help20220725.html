@@ -1,0 +1,400 @@
+{% extends 'myadmin/base.html' %}
+
+{% block main_body %}
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Help
+      <small>HALLO Data Portal Management</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Help</li>
+    </ol>
+    
+  </section>
+  
+
+  <!-- Main content -->
+  <section class="content container-fluid">
+    
+    <div class="row">
+      <div id="valids" style="position: fixed; right: 80px;">
+        <br>
+        <a href="#top" class="valid"> <button style="width: 150px;height: 50px;"><h5 class="box-title"> 
+                    Top  	&uarr;</button></h5> </a>
+        <hr>
+        <a href="#dataset_inquiry" class="valid">
+          <button style="width: 150px; height: 50px;"><h5 class="box-title"> 
+            User Management</h5></button>   </a>
+        <hr>
+        <a href="#model_inquiry" class="valid"> <button style="width: 150px;height: 50px;"><h5 class="box-title"> 
+          Model Management </h5>  </button> </a>
+        <hr>
+        <a href="#model_inquiry" class="valid"> <button style="width: 150px;height: 50px;"><h5 class="box-title"> 
+          Datasets Metadata </h5>  </button> </a>
+        <hr>
+        <a href="#model_inquiry" class="valid"> <button style="width: 150px;height: 50px;"><h5 class="box-title"> 
+          Datasets Archive </h5>  </button> </a>
+          <hr>
+        <a href="#model_inquiry" class="valid"> <button style="width: 150px;height: 50px;"><h5 class="box-title"> 
+          Datasets Annotation </h5>  </button> </a>
+          <hr>
+        <a href="#model_inquiry" class="valid"> <button style="width: 150px;height: 50px;"><h5 class="box-title"> 
+          Download History </h5>  </button> </a>  
+        </div>
+
+      <div class="col-xs-10">
+        <div class="box">
+          <div class="box-header">
+            <h2 class="box-title"> 
+              Instructions to HALLO Data Portal Management</h2>
+          </div>
+          <br>
+          <!-- /.box-header -->
+          <!-- form start -->
+          
+          <div>
+            <div>
+            Welcome to <b>HALLO Data Portal Management</b> ! The management site provides four parts of functions: 
+            <ol>
+              <li>Users management through Link: <a href="{% url 'myadmin_user_index' 1 %}">User Management. </a>
+                Click <a href="#user_management">User Management Instruction</a> for detailed instruction.
+              </li>
+              <li>Add/Edit/Delete/Check marine acoustic artificial intelligence model through link: 
+                <a href="{% url 'myadmin_model_index' 1 %}">Model Management. </a>
+                Click <a href="#model_inquiry">Model Management Instruction</a> for detailed instruction.
+              </li>
+              <li>Add/Edit/Delete/Check marine acoustic artificial intelligence model through link: 
+                  <a href="{% url 'myadmin_dataset_index' 1 %}">Datasets Metadata. </a>
+                  Click <a href="#Metadata">Datasets Metadata Instruction</a> for detailed instruction.
+              </li>
+              <li>Add/Edit/Delete/Check acoustic Datasets Meta information through link: 
+                    <a href="{% url 'myadmin_archive_index' 1 %}">Datasets Archive. </a>
+                    Click <a href="#Archive">Datasets Archive Instruction</a> for detailed instruction.
+                  </li>
+              <li>Add/Edit/Delete/Check the archive files for a pre-defined dataset through link: 
+                      <a href="{% url 'myadmin_annotation_index' 1 %}">Datasets Annotation. </a>
+                      Click <a href="#dataset_annotation">Datasets Annotation Instruction</a> for detailed instruction.
+                    </li>
+              <li>Add/Edit/Delete/Check annotation files for for a pre-defined dataset through link: 
+                        <a href="{% url 'myadmin_downloadhist_index' 1 %}">Check Vistors' Download History. </a>
+                        Click <a href="#download_history">Download History Instruction</a> for detailed instruction.
+                      </li>
+            </ol>
+          </div>
+          
+          <!---user_management---->
+            <hr id="user_management">
+            <h3>User Management</h3>
+            <img src="/static/web/images/Dataset_Query.jpg" alt=""> 
+            <br>
+            Visitors could inquire the required datasets based on below criteria:
+            <br>
+            <ol>
+              <li>
+                <b>Keywords</b>
+                Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+              </li>
+              <li>
+                <b>Species</b>
+                List all Species available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Ecotypes</b>
+                List all Ecotypes available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Pods</b>
+                List all Ecotypes available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Call Type</b>
+                List all Ecotypes available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Start And/Or End of Record (in Local Time)</b>
+                List all Ecotypes available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Coarse/Detailed Annotation </b>
+                List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+                Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+                species such as Southern Resident Killer Whale. 
+              </li>
+              <li>
+                <b>Coarse/Detailed Annotation </b>
+                List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+                Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+                species such as Southern Resident Killer Whale. 
+              </li>
+            </ol>
+             <b>Clear</b> Button. Click this button if user want to reset all the criteria.
+             <br>
+             <b>Filter</b> Button. Click this button to inquire the datasets based on the criteria setup above.
+            <br>
+             <b>Datasets Available </b> table lists all the datasets that meet the query criteria. 
+             <div class="d-flex align-items-center"> 
+              <img src="/static/web/images/Dataset_Query_result.jpg" alt=""></div>
+            
+             Under the table list, user could click 
+             the google map to view the geographical location of each dataset. 
+             <div class="d-flex align-items-center">
+              <img src="/static/web/images/Google_map.jpg" alt=""></div>
+             <br>
+             For the each dataset listed,
+             visitors could click "Details" button to view the detail information of this dataset, including:
+             <div>
+              <ol>
+              <li>
+                <b>Dataset Annotation</b>
+                If visitor already sign up an account and log in with this account. He can view the download link and download.
+              </li>
+              <li>
+                <b>Keywords</b>
+                Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+              </li>
+              <li>
+                
+              </li>
+              <li>
+                
+              </li>
+            </ol>
+            <div class="d-flex align-items-center"> <center><b>Dataset detail without LogIn</b></center>
+              <img src="/static/web/images/Dataset_detail_without_LogIn.jpg" alt=""></div>
+            
+              <br>
+              <div class="d-flex align-items-center"><center><b>Dataset detail after LogIn</b></center>
+                <img src="/static/web/images/Dataset_detail_after_LogIn.jpg" alt=""></div>
+            
+          </div>
+<!---Model Inquiry and Download--->
+          <hr id="model_inquiry">
+          
+          <h3>Model Management</h3>
+          <br>
+          Manager could upload new models, edit and delete and list existing model:
+          <img src="/static/web/images/Myadmin_addmodel.jpg" alt=""  width="1000" height="600"> 
+          
+          <hr>
+           <b>Datasets Available </b> 
+           br
+        table lists all the datasets that meet the query criteria. 
+           <div class="d-flex align-items-center"> 
+            <img src="/static/web/images/Dataset_Query_result.jpg" alt=""  width="1000" height="600"></div>
+
+    
+
+  <!--- Datasets Metadata Inquiry and Download--->
+  <hr id="Metadata">
+          
+  <h3> Datasets Metadata Management</h3>
+  <img src="/static/web/images/Myadmin_datasetlist.jpg" width="1000" height="600"> 
+  <br>
+  Visitors could inquire the required models based on below criteria:
+  <br>
+  <ol>
+    <li>
+      <b>Keywords</b>
+      Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+    </li>
+    <li>
+      <b>Species</b>
+      List all Species available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Ecotypes</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Pods</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Call Type</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Start And/Or End of Record (in Local Time)</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Coarse/Detailed Annotation </b>
+      List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+      Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+      species such as Southern Resident Killer Whale. 
+    </li>
+    
+  </ol>
+   <b>Clear</b> Button. Click this button if user want to reset all the criteria.
+   <br>
+   <b>Filter</b> Button. Click this button to inquire the datasets based on the criteria setup above.
+  <br>
+   <b>Datasets Available </b> table lists all the datasets that meet the query criteria. 
+   <div class="d-flex align-items-center"> 
+    <img src="/static/web/images/Dataset_Query_result.jpg" alt=""></div>
+
+<!---Datasets Archive Management--->
+  <hr id="Archive">
+          
+  <h3> Datasets Archive Management</h3>
+  <img src="/static/web/images/Myadmin_datasetlist.jpg" alt=""> 
+  <br>
+  Visitors could inquire the required models based on below criteria:
+  <br>
+  <ol>
+    <li>
+      <b>Keywords</b>
+      Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+    </li>
+    <li>
+      <b>Species</b>
+      List all Species available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Ecotypes</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Pods</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Call Type</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Start And/Or End of Record (in Local Time)</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Coarse/Detailed Annotation </b>
+      List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+      Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+      species such as Southern Resident Killer Whale. 
+    </li>
+   
+  </ol>
+   <b>Clear</b> Button. Click this button if user want to reset all the criteria.
+   <br>
+   <b>Filter</b> Button. Click this button to inquire the datasets based on the criteria setup above.
+  <br>
+   <b>Datasets Available </b> table lists all the datasets that meet the query criteria. 
+   <div class="d-flex align-items-center"> 
+    <img src="/static/web/images/Dataset_Query_result.jpg" alt=""></div>
+
+<!---Datasets Annotation Management--->
+  <hr id="dataset_annotation">
+          
+  <h3> Datasets Annotation Management</h3>
+  <img src="/static/web/images/Myadmin_datasetlist.jpg" alt=""> 
+  <br>
+  Visitors could inquire the required models based on below criteria:
+  <br>
+  <ol>
+    <li>
+      <b>Keywords</b>
+      Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+    </li>
+    <li>
+      <b>Species</b>
+      List all Species available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Ecotypes</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Pods</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Call Type</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Start And/Or End of Record (in Local Time)</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Coarse/Detailed Annotation </b>
+      List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+      Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+      species such as Southern Resident Killer Whale. 
+    </li>
+    <li>
+      <b>Coarse/Detailed Annotation </b>
+      List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+      Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+      species such as Southern Resident Killer Whale. 
+    </li>
+  </ol>
+   <b>Clear</b> Button. Click this button if user want to reset all the criteria.
+   <br>
+   <b>Filter</b> Button. Click this button to inquire the datasets based on the criteria setup above.
+  <br>
+   <b>Datasets Available </b> table lists all the datasets that meet the query criteria. 
+   <div class="d-flex align-items-center"> 
+    <img src="/static/web/images/Dataset_Query_result.jpg" alt=""></div>
+
+  <!--- View Download History and Download--->
+  <hr id="download_history">
+          
+  <h3> View Download History </h3>
+  <img src="/static/web/images/Download_history.jpg" alt=""  width="1300" height="500"> 
+  <br>
+  Visitors could inquire the required models based on below criteria:
+  <br>
+  <ol>
+    <li>
+      <b>Keywords</b>
+      Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+    </li>
+    <li>
+      <b>Species</b>
+      List all Species available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Ecotypes</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Pods</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Call Type</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Start And/Or End of Record (in Local Time)</b>
+      List all Ecotypes available for query, vistors can single-select or multiple-select items.
+    </li>
+    <li>
+      <b>Coarse/Detailed Annotation </b>
+      List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+      Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+      species such as Southern Resident Killer Whale. 
+    </li>
+    <li>
+      <b>Coarse/Detailed Annotation </b>
+      List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+      Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+      species such as Southern Resident Killer Whale. 
+    </li>
+  </ol>
+   <b>Clear</b> Button. Click this button if user want to reset all the criteria.
+   <br>
+   <b>Filter</b> Button. Click this button to inquire the datasets based on the criteria setup above.
+  <br>
+   <b>Datasets Available </b> table lists all the datasets that meet the query criteria. 
+   <div class="d-flex align-items-center"> 
+    <img src="/static/web/images/Dataset_Query_result.jpg" alt=""></div>
+        <!-- /.box -->
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+{% endblock %}

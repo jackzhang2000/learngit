@@ -1,0 +1,148 @@
+{% extends "myadmin/base.html" %}
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h2 align="center">Model "{{ model.model_name }}" Details</h2>
+        </div>
+
+        <div class="panel-body">
+
+
+            <hr>
+            <div class=" row">
+                <div class="col-md-3 control-label">
+                    <b>Model Package Download</b>
+                    <br>
+
+                    {% for svo in archivelist %}
+                    <a href="/static/uploads/archive/{{ svo.File_name }}" class="btn btn-warning btn-xs">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true">{{ svo.File_name }}</span> </a>
+                    <br>
+                    <br>
+                    {% endfor %}
+
+
+
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#metadata" data-toggle="tab"><b>Metadata</b></a></li>
+                        <li><a href="#home" data-toggle="tab">
+                                <b>Testset 1 Performance</b></a></li>
+                        <li><a href="#home" data-toggle="tab">
+                                <b>Testset 2 Performance</b></a></li>
+                        <li><a href="#home" data-toggle="tab">
+                                <b>Testset 3 Performance</b></a></li>
+                        <li><a href="#home" data-toggle="tab">
+                                <b>Testset 4 Performance</b></a></li>
+
+
+
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="metadata">
+                            <b>Name:</b> {{ model.Model_Name }}
+                            <br>
+                            <b>Author: </b> {{ model.firstname }} {{ model.lastname }} 
+                            <br>
+                            <b>Number of annotated events:</b> {{ dataset.Num_Of_Annotated_Events }}
+                            <br>
+                            <b>Species identified:</b>
+                            <br>
+                            {{ dataset.Species_identified }}
+                            <br>
+                            <div class="row">
+
+                                <div class="col-md-5"><b>Sampling_rate: </b> {{ dataset.Sampling_rate }}
+                                    <br>
+                                    <b>Annotation_type:</b> {% if dataset.Annotation_type == 1 %}
+                                    <span style="color:green">Detailed Annotation</span>
+                                    {% elif dataset.Annotation_type == 2 %}
+                                    <span style="color:red">Coarse Annotation</span>
+                                    {% endif %}
+                                    <br>
+                                    <b>Total duration:</b> {{ dataset.Total_Duration }}
+                                    <br>
+                                    <b>File size:</b>  {{ dataset.File_Size }}
+                                    <br>
+                                    <b>Total size:</b> {{ dataset.Total_Size }}
+                                    <br>
+                                    <b> Number of subsets:</b> {{ dataset.Number_of_Subsets }}
+                                    <br>
+                                    <b>Location:</b> {{ dataset.Location }}
+                                    <br>
+                                    <b>Coordinates:</b> {{ dataset.Latitude }} &nbsp;{{ dataset.Longitude }}
+                                    <br>
+                                    <b>Depth:</b> 3{{ dataset.Depth }}
+                                </div>
+                                <div class="col-md-7"><img src="/static/web/images/WorldMap.png" title="metadata"></div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="home">
+                            <img src="/static/uploads/dataset/{{ dataset.Summary_by_Species }}" title="Meridian">
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    </div>
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        d3.text("/static/uploads/annotation/{{ annotation.File_name }}", function (data) {
+            var parsedCSV = d3.csv.parseRows(data).slice(0, 10);
+            var container = d3.select("#dvCSV")
+                .append("table")
+                .selectAll("tr")
+                .data(parsedCSV).enter()
+                .append("tr")
+                .selectAll("td")
+                .data(function (d) { return d; }).enter()
+                .append("td")
+                .text(function (d) { return d; });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // 获取已激活的标签页的名称
+                var activeTab = $(e.target).text();
+                // 获取前一个激活的标签页的名称
+                var previousTab = $(e.relatedTarget).text();
+                $(".active-tab span").html(activeTab);
+                $(".previous-tab span").html(previousTab);
+            });
+        });
+    </script>
+
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+
+</section>
+
+
+{% endblock %}

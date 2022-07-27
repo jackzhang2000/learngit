@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!--设置当前HTML文件的字符编码-->
+
+	<!--compatible兼容的，设置浏览器的兼容模式版本（让IE使用最新的渲染引擎工作）-->
+
+	<!--声明当前网页在移动端浏览器展示的相关设置-->
+	<!-- 
+			viewport表示用户是否可以缩放页面
+			width指定视区的逻辑宽度
+			device-width指定视区宽度应为设备的屏幕宽度
+			initial-scale指令用于设置Web页面的初始化缩放比例
+			initial-scale-1则将显示未经缩放的Web文档
+		 -->
+
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>Datasets</title>
+	<!--引入Bootstrap核心样式表(CSS)文件-->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/main.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="navbar-header">
+			<a href="index.html" class="navbar-brand">
+			</a>
+			<ul class="nav navbar-nav">
+				<li><a href="#">Hallo Data Portal</a></li>
+
+			</ul>
+
+		</div>
+		<ul class="nav navbar-nav navbar-right">
+
+			<li><a href="#">Sign On</a></li>
+			<li><a href="#">Sign Up</a></li>
+			<li><a href="#">About</a></li>
+		</ul>
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h2 align="center">HALLO Datasets</h2>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-8">
+
+						<div class="panel-heading">
+							<center>Filter datasets</center>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<span class="fl">Key Words</span>
+								<input type="text" id="keywords" name="keywords" />
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<span class="fl">Ecotypes</span><br>
+									<select multiple id="multi" name="multi">
+										<option>Southern Residents</option>
+										<option>Transients</option>
+										<option>Northern Residents</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<span class="fl">Pods</span>
+									<br>
+									<select multiple id="multi" name="multi">
+										<option>J</option>
+										<option>K</option>
+										<option>L</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<span class="fl">Call Types</span>
+									<br>
+									<select multiple id="multi" name="multi">
+										<option>S4</option>
+										<option>S17</option>
+										<option>S44</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+
+									From
+									<input type="date" name="user_date" value="01/01/2018" />
+									<br>
+									To
+									<input type="date" name="user_date" value="01/01/2018" />
+									<br>
+								</div>
+								<div class="col-md-4">
+									<ul>
+										Coarse&nbspAnnotation<input type="checkbox" id="taste_1" name="Coarse"
+											value="1">
+
+										Detailed&nbspAnnotation<input type="checkbox" id="taste_2" name="Detailed"
+											value="2">
+
+									</ul>
+								</div>
+
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-4">
+
+									<button class="btn btn-primary" id="btn">Clear</button>
+								</div>
+								<div class="col-md-2">
+									<button class="btn btn-primary" id="btn">Filter</button>
+								</div>
+
+							</div>
+
+
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel-heading">
+							<center>Datasets Available</center>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-6 col-sm-6" style="background-color: #dedef8;
+					 box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+									<p>Coarse Annotations</p>
+								</div>
+								<div class="col-xs-6 col-sm-6" style="background-color: #dedef8;
+								box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+									<p>Detailed Annotations</p>
+								</div>
+							</div>
+							<br>
+
+							<div class="row">
+								<div class="col-md-6">
+
+									<button class="btn btn-primary" id="btn">Dataset A</button>
+								</div>
+								<div class="col-md-4">
+									<button class="btn btn-primary" id="btn">Dataset D</button>
+								</div>
+
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-6">
+
+									<button class="btn btn-primary" id="btn">Dataset B</button>
+								</div>
+								<div class="col-md-6">
+									<button class="btn btn-primary" id="btn">Dataset E</button>
+								</div>
+
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-6">
+
+									<button class="btn btn-primary" id="btn">Dataset C</button>
+								</div>
+								<div class="col-md-6">
+									<button class="btn btn-primary" id="btn">Dataset F</button>
+								</div>
+
+							</div>
+							<br>
+
+						</div>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="panel-heading">
+							<center>Location</center>
+						</div>
+						<hr>
+						<div class="panel-body">
+
+
+							<div class="row">
+								<div class="col-md-12">
+									<img src="assets/WorldMap.png" alt="">
+								</div>
+			
+			
+							</div>
+			
+			
+						</div>
+
+					</div>
+					<div class="col-md-4">
+
+						<div class="panel-heading">
+							<center>Summary</center>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12">
+									<ul id="myTab" class="nav nav-tabs">
+										<li class="active"><a href="#home" data-toggle="tab">
+												Species</a></li>
+										<li><a href="#ios" data-toggle="tab">Ecotypes</a></li>
+										<li><a href="#jmeter" data-toggle="tab">Pods</a></li>
+										<li><a href="#ejb" data-toggle="tab">CallTypes</a></li>
+			
+									</ul>
+									<div id="myTabContent" class="tab-content">
+										<div class="tab-pane fade in active" id="home">
+											<img src="assets/Species.png" title="Meridian">
+										</div>
+										<div class="tab-pane fade" id="ios">
+											<img src="assets/Calltype.png" title="Meridian">
+										</div>
+										<div class="tab-pane fade" id="jmeter">
+											<img src="assets/Calltype.png" title="Meridian">
+										</div>
+										<div class="tab-pane fade" id="ejb">
+											<img src="assets/Calltype.png" title="Meridian">
+										</div>
+									</div>
+								</div>
+			
+			
+							</div>
+			
+			
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+		</div>
+		<br>
+
+
+	</div>
+
+	</div>
+	</div>
+
+	<script>
+        $(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // 获取已激活的标签页的名称
+                var activeTab = $(e.target).text();
+                // 获取前一个激活的标签页的名称
+                var previousTab = $(e.relatedTarget).text();
+                $(".active-tab span").html(activeTab);
+                $(".previous-tab span").html(previousTab);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

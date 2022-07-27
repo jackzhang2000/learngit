@@ -1,0 +1,523 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Model List</title>
+    <link rel="stylesheet" href="{% static 'web/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'web/css/common.css'%}">
+    <style type="text/css">
+        body{min-height:2000px;padding-top:70px;}
+
+        .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+        .navbar-default .navbar-brand{color:#fff;}
+        .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
+            color: #fff;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+        .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
+            color:#fff;
+            background-color: #FF4500;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+
+        .tdbreak {
+          word-break: break-all
+        }
+
+        table tr td{font-size:11px;} 
+        table tr td.price{color:red;}
+        table tr td.num span{color:red;padding:0px 5px}
+        table tr td.num i{border-width:0px;background-color:#ddd;} 
+
+        div.shoplist div.bn{font-size:12px;line-height:25px;}
+        div.shoplist div.bn span.price{color:red;}
+
+        .container .panel .panel-heading{padding:0px 15px;line-height:40px;}
+        .container .panel .panel-heading a.btn{margin-top:5px;width:100px;float:right}
+
+        .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
+            background-color: #ff8800;
+            border-color: #ff8800;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 
+            <span style="font-weight:bold;">Halo Data Portal</span>
+            <span style="font-size:14px;"></span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'web_index'%}">Datasets</a></li>
+            <li class="active"><a href="{% url 'web_models_index' 1 %}">Benchmarks</a></li>
+            <li><a href="{% url 'web_about' %}">About</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true">{{request.session.webuser.username}}</a></li>
+            <li>{% if request.session.webuser.username %}
+              <a href="{% url 'web_logout' %}">Log off</a>
+            {% else %}
+            <a href="{% url 'web_login' %}">Log In</a>
+            {% endif %}</li>			
+            <li><a href="{% url 'web_signup' %}">Sign Up</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-warning">
+            <div class="panel-heading"><span class="glyphicon glyphicon-search"
+                aria-hidden="true"></span>
+              Filter Models
+            </div>
+            <form action="{% url 'web_models_index' pIndex|add:1 %}?{{mywhere|join:'&'}}" method="get">
+              <li class="list-group-item">
+                <b>Keywords: &nbsp; </b>
+                <input type="text" id="keyword" name="keyword" />
+              </li>
+              <li class="list-group-item">
+                <table class="table table-striped">
+                  <colgroup>
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 30%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 10%;">
+                   </colgroup>
+                  <tr>
+                    <th>Machine Learning Method<br>
+                      <textarea id="machlearnmeth" name="machlearnmeth" ></textarea>
+                      </th>
+                    <th>Classification Level<br>
+                      <input type="checkbox" id="species" name="species" value="species">
+                      <label for="vehicle1">species</label><br>
+                      <input type="checkbox" id="call_level" name="call_level" value="call_type">
+                      <label for="vehicle2">call_level</label><br>
+                      <input type="checkbox" id="ecotype" name="ecotype" value="ecotype">
+                      <label for="vehicle3">ecotype</label><br>
+                      <input type="checkbox" id="pod" name="pod" value="pod">
+                      <label for="vehicle2">pod</label><br>
+                    </th>
+                    <th>Classes<br>
+    
+                      <input type="checkbox" id="class1" name="class1" value="Pacific White-sided Dolphin">
+                        <label for="vehicle1">Pacific White-sided Dolphin</label><br>
+                        <input type="checkbox" id="class2" name="class2" value="Orca(Killer Whale)">
+                        <label for="vehicle2">Orca(Killer Whale)</label><br>
+                      <input type="checkbox" id="class3" name="class3" value="Whale">
+                        <label for="vehicle2">Whale</label><br>
+                      <input type="checkbox" id="class4" name="class4" value="Humback Whale">
+                        <label for="vehicle1">Humback Whale</label><br>
+                        <input type="checkbox" id="species5" name="species5" value="Dolphin">
+                        <label for="vehicle2">Dolphin</label><br>
+                        <br>
+                    </th>
+                    
+                    <th><b>Training data sets</b><br>
+                      <textarea id="traindataset" name="traindataset"></textarea>
+                    </th>
+                    
+                    <th><b>Test datasets</b><br>
+                      <textarea id="testdataset" name="testdataset"></textarea>
+                    </th>
+                    
+                    <th><br>
+                    </th>
+                    
+                    <th><br>
+                    </th>
+    
+    
+                  </tr>
+                </table>
+              </li>
+              
+                <label for="inputEmail3" class="col-sm-2 control-label">Start Date of Update</label>
+                  <div class="col-sm-4">
+                    <input type="datetime-local" id="Datetimelocalfrom" name="Datetimelocalfrom" value="2022-06-15T08:30">
+                  </div>
+                  <label for="inputEmail3" class="col-sm-2 control-label">End Date of Update</label>
+                  <div class="col-sm-4">
+                    <input type="datetime-local" id="Datetimelocalto" name="Datetimelocalto" value="2020-06-18T19:30">
+                  </div>
+              
+              <br>
+              <div class="panel-footer" style="height:50px">
+    
+                <button type="submit" onclick="dosubmit()" class="btn btn-warning"
+                  style="width:100px;float:right">Filter</button>
+                <button type="button" onclick="window.location='{% url 'web_models_index' 1 %}'"
+                  class="btn btn-danger" style="width:60px;float:right;margin-right:20px;"> Clear </button>
+              </div>
+            </form>
+  
+          </div>
+        </div>
+      </div>
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Model Available
+                    <a type="button" href="{{url}}"  class="btn btn-warning btn-sm">Refresh</a>
+                </div>
+                <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Machine Learning Method</th>
+                            <th>Classification Level</th>
+                            <th>Classes</th>
+                            <th>Training Datasets</th>
+                            <th>Test Datasets</th>
+                            <th>model package file</th>
+                            <th>Update at</th>
+                            <th>Meta Data</th>
+                        </tr>
+                        {% for vo in orderslist %}
+                        <tr class="oid{{vo.id}}">
+                          <td>{{ vo.ID }}</td>
+                          <td  width="12%">{{ vo.model_name }}</td>
+                          <td>{{ vo.machine_learning_method }}</td>
+                          <td> {{ vo.classification_level }} </td>
+                          <td> {{ vo.classes }} </td>
+                          <td width="12%" class="tdbreak">{{ vo.training_datasets }}</td>
+                          <td width="12%" class="tdbreak"> {{ vo.test_datasets }} </td>
+                          <td> {% if request.session.webuser.username %}
+                                
+                                  {% if vo.model_package_file %}
+                                  <a href="/static/uploads/model/{{ vo.model_package_file }}" class="btn btn-warning btn-xs">
+                                    <span class="glyphicon glyphicon-file" aria-hidden="true">Download</span> </a> 
+                                  {% endif %} </a>
+                            <br>
+                          {% else %}
+                          To download the model package file you need Signup and Login:
+                          <br>
+                          <a href="{% url 'web_login' %}">Log In</a>
+                          <br>
+                          {% endif %}
+                            
+                           </td>                          
+                          <td>{{ vo.Update_at|date:'Y-m-d H:i:s' }}</td>
+                            <td>
+                              {% if request.session.webuser.username %}
+                            
+                                
+                                  {% if vo.yaml_file %}
+                                  <!--<button id="myBtn">View</button>--->
+                                  <button type="button" onclick="doShow({{ vo.id }})" class="btn btn-warning btn-xs" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 详情</button>
+                                  <a href="/static/uploads/model/{{ vo.yaml_file }}" class="btn btn-warning btn-xs">
+                                    <span class="glyphicon glyphicon-file" aria-hidden="true">Download</span> </a> 
+                                  {% endif %} </a>
+                            <br>
+                          {% else %}
+                          To download the model YAML file you need Signup and Login:
+                          <br>
+                          <a href="{% url 'web_login' %}">Log In</a>
+                          <br>
+                          {% endif %}
+                              </td>
+                        </tr>
+                        {% endfor %}
+                </table>
+                <div class="panel-footer" style="height:50px">
+                    <div style="width:120px;float:left;margin:5px 0px;">Totally <span style="color:red;font-weight:bold;">{{maxpages}}</span> Page</div>
+                    <nav aria-label="Page navigation" class="text-right">
+                      <ul class="pagination" style="margin:0px;">
+                        <li><a href="{% url 'web_models_index' pIndex|add:-1 %}"><span aria-hidden="true">&laquo;</span></a></li>
+                        {% for p in plist %}
+                          <li {% if pIndex == p %}class="active"{% endif %}><a href="{% url 'web_models_index' p %}">{{ p }}</a></li>
+                        {% endfor %}
+                        <li><a href="{% url 'web_models_index' pIndex|add:1 %}"><span aria-hidden="true">&raquo;</span></a></li>
+                      </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The Modal 
+<div id="myModal" class="modal">
+
+  <!-- Modal content 
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <textarea rows="20" cols="200" style="border:none;">
+      # Submission information
+      submission:
+        # Submission label
+        # Label is used to index submissions, to avoid overlapping codes among submissions
+        # use the following way to form your label:
+        # [Last name of author]_[Abbreviation of affiliation]_[Model abbreviation]_v[version number]
+        label: Frazao_MERIDIAN_KWD_v1
+      
+        # Submission name
+        # This name will be used in the results tables when space permits
+        name: Killer whale detector by Jack2
+      
+        # Submission name abbreviated
+        # This abbreviated name will be used in the results table when space is tight, maximum 10 characters
+        abbreviation: kw_det
+      
+        # Submission authors in order, mark one of the authors as corresponding author.
+        author:
+          lastname: Frazao
+          firstname: Fabio
+          email: fsfrazao@dal.ca                     # Contact email address
+       
+        date: 2022-04-20   # submission date, YYYY-MM-DD
+         
+      
+      # Model information
+      model:
+        # model description, meta data provided here will be used to do
+        # meta analysis of the submitted model. Use general level tags, if possible use the tags provided in comments.
+        # If information field is not applicable to the model, use "!!null".
+        description:
+      
+          # Audio input
+          input_sampling_rate: 20               # In kHz
+      
+          # Acoustic representation
+          acoustic_features: spectrogram   # e.g one or multiple [MFCC, log-mel energies, spectrogram, CQT, PCEN, ...]
+      
+          # Data augmentation methods
+          data_augmentation: time stretching            # [time stretching, block mixing, pitch shifting, ...]
+      
+          # Machine learning
+          # In case using ensemble methods, please specify all methods used (comma separated list).
+          machine_learning_method: CNN         # e.g one or multiple [GMM, HMM, SVM, kNN, MLP, CNN, RNN, CRNN, NMF, random forest, ensemble, transformer, ...]
+      
+          # External data usage method
+          # e.g. directly, embeddings, pre-trained model, ...
+          external_data_usage: directly
+      
+          # Post-processing, followed by the time span (in ms) in case of smoothing
+          post_processing: [peak picking, threshold]    # [median filtering, time aggregation...]  
+          
+          # Classification level
+          classification_level: species   # e.g. species, call_level, ecotype, pod, ...
+          
+          # Class labels
+          classes: Humback Whale   # [Other, KW, HB]
+      
+        # System complexity, meta data provided here will be used to evaluate
+        # submitted systems from the computational load perspective.
+        complexity:
+      
+          # Total amount of parameters used in the acoustic model. For neural networks, this
+          # information is usually given before training process in the network summary.
+          # For other than neural networks, if parameter count information is not directly available,
+          # try estimating the count as accurately as possible.
+          # In case of ensemble approaches, add up parameters for all subsystems.
+          total_parameters: variable    # note that for simple template matching, the "parameters"==the pixel count of the templates, plus 1 for each param such as thresholding. 
+          # Approximate training time followed by the hardware used
+          training_time: 
+          # Model size in MB
+          model_size: 100MB
+      
+      
+        # URL to the source code of the system [optional, highly recommended]
+        source_code:   
+        # List of Training datasets
+        train_datasets:
+          train_dataset1:
+            name: HALLO_set_A
+          train_dataset2:
+            name: HALLO_set_B
+          train_dataset3:
+            name: External_set_1
+          train_dataset4:
+            name:  
+      
+        # List of external datasets used in the submission.
+        # A previous DCASE development dataset is used here only as example! List only external datasets
+        test_datasets:
+          test_dataset1:
+            name: HALLO_set_C
+          test_dataset2:
+            name: External_set_2
+          test_dataset3:
+            name:
+          test_dataset4:
+            name:
+      # System results 
+      results:
+        # Provide accuracy score and figure file for as many test sets as possible
+        # If you cannot provide all result details, also incomplete results can be reported.
+        test_set_1: # test-set unique label
+          name: HALLO_set_C
+          F_score: 1.22 # percentile
+          figure: figures/fig1.png
+        test_set_2:
+          name: External_set_2
+          F_score: 5.84 # percentile
+          figure: figures/fig2.png
+      
+      contents:
+        yaml_file: hallo.yaml #this file
+        ketos_model_file: kw_001.kt # ketos model file
+        python_script: run_model.py # python script for running model
+        description: readme.md # detailed description of the model
+        performance_figure: figures/*.png # figures showing performance on test sets
+          
+      
+    </textarea>
+  </div>
+
+</div>-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">订单详情</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+            <tr>
+                <th>序号</th>
+                <th>菜品名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>梅菜扣肉+番茄鸡蛋</td>
+                <td>25</td>
+                <td>2</td>
+                <td>50</td>
+                <td>正常</td>
+                <td><button>删除</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>肉沫酸豆角</td>
+                <td>15</td>
+                <td>1</td>
+                <td>15</td>
+                <td>正常</td>
+                <td><button>删除</button></td>
+            </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <!--button type="button" class="btn btn-primary">保存</button-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+    
+
+    
+
+    <script src="{% static 'web/js/jquery.min.js'%}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js'%}"></script>
+    <script>
+      //执行订单处理(下订单)
+      function dosubmit() {
+        //获取要提交的数据
+        var ptype = $("input[name='ptype']:checked").val();
+        var bank = $("input[name='bank']:checked").val();
+        //alert(ptype+":"+bank);
+        //执行ajax提交订单
+        $.ajax({
+          type: "get",
+          url: "{% url 'web_orders_insert' %}",
+          dataType: "text",
+          data: { ptype: ptype, bank: bank },
+          success: function (res) {
+            if (res == "Y") {
+              alert("Query completed, please check below result！");
+              window.location.href = "{% url 'web_index' %}";
+            } else {
+              alert("Query completed, please check below result！");
+            }
+          }
+        });
+      }
+      function doShow(id){ 
+              $.ajax({
+                  type:'get',
+                  url:"{% url 'web_orders_detail' %}",
+                  dataType:'text',
+                  data:{oid:id},
+                  async: false,
+                  success:function(res){
+                      $("#myModal div.modal-body").empty().append(res);
+                      $('#myModal').modal({keyboard:false})
+                  },
+              });
+          }
+  
+          function doChangeStatus(id,s){
+              var info = ["","","确定要删除订单吗？","确定要完成此订单吗？"];
+              if(window.confirm(info[s])){
+                  $.get("{% url 'web_orders_status' %}",{oid:id,status:s},function(data){
+                      if(data == "Y"){
+                          $("tr.oid"+id).remove();
+                      }else{
+                          alert("订单处理失败！");
+                      }
+                  },'text');
+              }
+          }
+  
+    </script>
+</body>
+</html>

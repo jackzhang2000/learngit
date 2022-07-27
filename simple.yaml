@@ -1,0 +1,58 @@
+label: Frazao_MERIDIAN_KWD_v1
+
+# Submission name
+# This name will be used in the results tables when space permits
+name: Killer whale detector
+
+# Submission name abbreviated
+# This abbreviated name will be used in the results table when space is tight, maximum 10 characters
+abbreviation: kw_det
+
+# Submission authors in order, mark one of the authors as corresponding author.
+author: Frazao Fabio
+email: fsfrazao@dal.ca
+submission_date: 2022-04-20 # can we use the current datetime?
+
+# model description
+input_sampling_rate: 20 # in Khz
+acoustic_features: spectrogram
+data_augmentation: time stretching
+machine_learning_method: template matching
+external_data_usage: 
+post-processing: [peak picking, threshold]
+classification_level: species
+classes: [Other, KW, HB]   # 
+
+
+# System complexity, meta data provided here will be used to evaluate
+# submitted systems from the computational load perspective.
+total_parameters: variable    # note that for simple template matching, the "parameters"==the pixel count of the templates, plus 1 for each param such as thresholding. 
+
+trainining_time: # Approximate training time followed by the hardware used
+
+model_size: # Model size in MB
+
+# URL to the source code of the system [optional, highly recommended]
+source_code_name: 
+ext_datasets_name:
+ext_datasets_url:
+ext_datasets_total_audio_length:
+# System results 
+test_set_1: JASCO_dataset
+F_score_1:
+figure_1: figure1.jpg
+test_set_2: DFO_dataset
+F_score_2:
+figure_2:
+test_set_3:
+F_score_3:
+figure_3:
+
+# contents of the submitted package
+package_file: 1648215521.731586.zip
+yaml_file: hallo.yaml # this file name
+#Do we need below files names which already containted in the uploaded zip file? The users could find them in the zip file.
+ketos_model_file: hallo.yaml
+py_script: 
+description: readme.md #detailed description file of the model
+figures: 

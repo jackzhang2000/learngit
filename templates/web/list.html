@@ -1,0 +1,378 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Model List</title>
+    <link rel="stylesheet" href="{% static 'web/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'web/css/common.css'%}">
+    <style type="text/css">
+        body{min-height:2000px;padding-top:70px;}
+
+        .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+        .navbar-default .navbar-brand{color:#fff;}
+        .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
+            color: #fff;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+        .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
+            color:#fff;
+            background-color: #FF4500;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+
+        .tdbreak {
+          word-break: break-all
+        }
+
+        table tr td{font-size:11px;} 
+        table tr td.price{color:red;}
+        table tr td.num span{color:red;padding:0px 5px}
+        table tr td.num i{border-width:0px;background-color:#ddd;} 
+
+        div.shoplist div.bn{font-size:12px;line-height:25px;}
+        div.shoplist div.bn span.price{color:red;}
+
+        .container .panel .panel-heading{padding:0px 15px;line-height:40px;}
+        .container .panel .panel-heading a.btn{margin-top:5px;width:100px;float:right}
+
+        .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
+            background-color: #ff8800;
+            border-color: #ff8800;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 
+            <span style="font-weight:bold;">Halo Data Portal</span>
+            <span style="font-size:14px;"></span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'web_index'%}">Datasets</a></li>
+            <li class="active"><a href="{% url 'web_models_index' 1 %}">Benchmarks</a></li>
+            <li><a href="{% url 'web_help' %}">Help</a></li>
+            
+            <li><a href="{% url 'web_about' %}">About</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true">{{request.session.webuser.username}}</a></li>
+            <li>{% if request.session.webuser.username %}
+              <a href="{% url 'web_logout' %}">Log off</a>
+            {% else %}
+            <a href="{% url 'web_login' %}">Log In</a>
+            {% endif %}</li>			
+            <li><a href="{% url 'web_signup' %}">Sign Up</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-warning">
+            <div class="panel-heading"><span class="glyphicon glyphicon-search"
+                aria-hidden="true"></span>
+              Filter Models
+            </div>
+            <form action="{% url 'web_models_index' pIndex|add:1 %}?{{mywhere|join:'&'}}" method="get">
+              <li class="list-group-item">
+                <b>Keywords: &nbsp; </b>
+                <input type="text" id="keyword" name="keyword" />
+              </li>
+              <li class="list-group-item" style="padding-bottom: 40px; background-color: #fff;">
+                <table class="table table-striped"  style="padding-bottom: 40px; background-color: #fff;">
+                  <colgroup>
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 30%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 10%;">
+                   </colgroup>
+                  <tr>
+                    <th>Machine Learning Method<br>
+                      <textarea id="machlearnmeth" name="machlearnmeth" ></textarea>
+                      </th>
+                    <th>Classification Level<br>
+                      <input type="checkbox" id="species" name="species" value="species">
+                      <label for="vehicle1">species</label><br>
+                      <input type="checkbox" id="call_level" name="call_level" value="call_type">
+                      <label for="vehicle2">call_level</label><br>
+                      <input type="checkbox" id="ecotype" name="ecotype" value="ecotype">
+                      <label for="vehicle3">ecotype</label><br>
+                      <input type="checkbox" id="pod" name="pod" value="pod">
+                      <label for="vehicle2">pod</label><br>
+                    </th>
+                    <th>Classes<br>
+    
+                      <input type="checkbox" id="class1" name="class1" value="Pacific White-sided Dolphin">
+                        <label for="vehicle1">Pacific White-sided Dolphin</label><br>
+                        <input type="checkbox" id="class2" name="class2" value="Orca(Killer Whale)">
+                        <label for="vehicle2">Orca(Killer Whale)</label><br>
+                      <input type="checkbox" id="class3" name="class3" value="Whale">
+                        <label for="vehicle2">Whale</label><br>
+                      <input type="checkbox" id="class4" name="class4" value="Humback Whale">
+                        <label for="vehicle1">Humback Whale</label><br>
+                        <input type="checkbox" id="species5" name="species5" value="Dolphin">
+                        <label for="vehicle2">Dolphin</label><br>
+                        <br>
+                    </th>
+                    
+                    <th><b>Training datasets</b><br>
+                      <textarea id="traindataset" name="traindataset"></textarea>
+                    </th>
+                    
+                    <th><b>Test datasets</b><br>
+                      <textarea id="testdataset" name="testdataset"></textarea>
+                    </th>
+                    
+                    <th><br>
+                    </th>
+                    
+                    <th><br>
+                    </th>
+    
+    
+                  </tr>
+                </table>
+                <div>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Start Date of Update</label>
+                    <div class="col-sm-4">
+                      <input type="datetime-local" id="Datetimelocalfrom" name="Datetimelocalfrom" value="2022-06-15T08:30">
+                    </div>
+                    <label for="inputEmail3" class="col-sm-2 control-label">End Date of Update</label>
+                    <div class="col-sm-4">
+                      <input type="datetime-local" id="Datetimelocalto" name="Datetimelocalto" value="2020-06-18T19:30">
+                    </div>
+                  </div>
+              </li>
+                
+              <br>
+              <div class="panel-footer" style="height:50px">
+    
+                <button type="submit" onclick="dosubmit()" class="btn btn-warning"
+                  style="width:100px;float:right">Filter</button>
+                <button type="button" onclick="window.location='{% url 'web_models_index' 1 %}'"
+                  class="btn btn-danger" style="width:60px;float:right;margin-right:20px;"> Clear </button>
+              </div>
+            </form>
+  
+          </div>
+        </div>
+      </div>
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Model Available
+                    <a type="button" href="{{url}}"  class="btn btn-warning btn-sm">Refresh</a>
+                </div>
+                <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Machine Learning Method</th>
+                            <th>Classification Level</th>
+                            <th>Classes</th>
+                            <th>Training Datasets</th>
+                            <th>Test Datasets</th>
+                            <th>model package file</th>
+                            <th>Update at</th>
+                            <th>Meta Data</th>
+                        </tr>
+                        {% for vo in orderslist %}
+                        <tr class="oid{{vo.id}}">
+                          <td>{{ vo.ID }}</td>
+                          <td  width="12%">{{ vo.model_name }}</td>
+                          <td>{{ vo.machine_learning_method }}</td>
+                          <td> {{ vo.classification_level }} </td>
+                          <td> {{ vo.classes }} </td>
+                          <td width="12%" class="tdbreak">{{ vo.training_datasets }}</td>
+                          <td width="12%" class="tdbreak"> {{ vo.test_datasets }} </td>
+                          <td> {% if request.session.webuser.username %}
+                                
+                                  {% if vo.model_package_file %}
+                                  <a href="/static/uploads/model/{{ vo.model_package_file }}" onclick="doDownload('{% url 'web_download' vo.model_package_file %}')"
+                                  class="btn btn-warning btn-xs">
+                                    <span class="glyphicon glyphicon-file" aria-hidden="true">Download</span> </a> 
+                                  {% endif %} </a>
+                            <br>
+                          {% else %}
+                          To download the model package file you need Signup and Login:
+                          <br>
+                          <a href="{% url 'web_login' %}">Log In</a>
+                          <br>
+                          {% endif %}
+                            
+                           </td>                          
+                          <td>{{ vo.Update_at|date:'Y-m-d H:i:s' }}</td>
+                            <td>
+                              <button type="button" onclick="doShow({{ vo.ID }})" class="btn btn-warning btn-xs" data-toggle="modal" 
+                              data-target="#myModal" 
+                              role="button">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>View</button>
+
+                                  
+                                  <br>
+                              {% if request.session.webuser.username %}
+                            
+                                
+                                  {% if vo.yaml_file %}
+                                  <!--<button id="myBtn">View</button>--->
+                                  <a href="/static/uploads/model/{{ vo.yaml_file }}" onclick="doDownload('{% url 'web_download' vo.yaml_file %}')"
+                                   class="btn btn-warning btn-xs">
+                                    <span class="glyphicon glyphicon-file" aria-hidden="true">Download</span> </a> 
+                                  {% endif %} </a>
+                            <br>
+                          {% else %}
+                          To download the model YAML file you need Signup and Login:
+                          <br>
+                          <a href="{% url 'web_login' %}">Log In</a>
+                          <br>
+                          {% endif %}
+                              </td>
+                        </tr>
+                        {% endfor %}
+                </table>
+                <div class="panel-footer" style="height:50px">
+                    <div style="width:120px;float:left;margin:5px 0px;">Totally <span style="color:red;font-weight:bold;">{{maxpages}}</span> Page</div>
+                    <nav aria-label="Page navigation" class="text-right">
+                      <ul class="pagination" style="margin:0px;">
+                        <li><a href="{% url 'web_models_index' pIndex|add:-1 %}"><span aria-hidden="true">&laquo;</span></a></li>
+                        {% for p in plist %}
+                          <li {% if pIndex == p %}class="active"{% endif %}><a href="{% url 'web_models_index' p %}">{{ p }}</a></li>
+                        {% endfor %}
+                        <li><a href="{% url 'web_models_index' pIndex|add:1 %}"><span aria-hidden="true">&raquo;</span></a></li>
+                      </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">YAML Contents</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+
+    <script src="{% static '/web/js/jquery.min.js'%}"></script>
+    <script src="{% static '/web/js/bootstrap.min.js'%}"></script>
+    <script>
+      //执行订单处理(下订单)
+      function dosubmit() {
+        //获取要提交的数据
+        var ptype = $("input[name='ptype']:checked").val();
+        var bank = $("input[name='bank']:checked").val();
+        //alert(ptype+":"+bank);
+        //执行ajax提交订单
+        $.ajax({
+          type: "get",
+          url: "{% url 'web_orders_insert' %}",
+          dataType: "text",
+          data: { ptype: ptype, bank: bank },
+          success: function (res) {
+            if (res == "Y") {
+              alert("Query completed, please check below result！");
+              window.location.href = "{% url 'web_index' %}";
+            } else {
+              alert("Query completed, please check below result！");
+            }
+          }
+        });
+      }
+
+      //对下载的点击进行记录
+        function doDownload(url){
+            alert("Download File  " + url);
+          window.location.href=url;
+      };
+  
+        function download() {
+            //获取要提交的数据
+            var ptype = $("input[name='ptype']:checked").val();
+            var bank = $("input[name='bank']:checked").val();
+            //alert(ptype+":"+bank);
+            //执行ajax提交订单
+            $.ajax({
+                type: "get",
+                url: "{% url 'web_orders_insert' %}",
+                dataType: "text",
+                data: { ptype: ptype, bank: bank },
+                success: function (res) {
+                    if (res == "Y") {
+                        alert("Query completed, please check below result！");
+                        window.location.href = "{% url 'web_index' %}";
+                    } else {
+                        alert("Query completed, please check below result！");
+                    }
+                }
+            });
+        }
+      function doShow(id){ 
+              $.ajax({
+                  type:'get',
+                  url:"{% url 'web_orders_detail' %}",
+                  dataType:'text',
+                  data:{oid:id},
+                  async: false,
+                  success:function(res){
+                      $("#myModal div.modal-body").empty().append(res);
+                      //$('#myModal').modal({keyboard:false})
+                  },
+              });
+          }
+  
+          function doChangeStatus(id,s){
+              var info = ["","","确定要删除订单吗？","确定要完成此订单吗？"];
+              if(window.confirm(info[s])){
+                  $.get("{% url 'web_orders_status' %}",{oid:id,status:s},function(data){
+                      if(data == "Y"){
+                          $("tr.oid"+id).remove();
+                      }else{
+                          alert("订单处理失败！");
+                      }
+                  },'text');
+              }
+          }
+  
+    </script>
+</body>
+</html>

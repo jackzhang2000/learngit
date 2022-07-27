@@ -1,0 +1,154 @@
+{% extends "myadmin/base.html" %}
+
+{% block main_body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h2 align="center">Dataset "{{ dataset.Dataset_Name }}" Details</h2>
+        </div>
+
+        <div class="panel-body">
+
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>file_name </th>
+                                <th>start_time </th>
+                                <th>end_time </th>
+                                <th>ecotype </th>
+                                <th>pod </th>
+                                <th>call_type </th>
+                                <th>comments </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>File56.wav </td>
+                                <td>1.37</td>
+                                <td> 1.88</td>
+                                <td> KW</td>
+                                <td>SRKW</td>
+                                <td>S17</td>
+                                <td> very faint call, vessel noice overlapping</td>
+
+                            </tr>
+                            <tr>
+                                <td>File56.wav</td>
+                                <td>89.0</td>
+                                <td>91.8</td>
+                                <td>KW</td>
+                                <td>SRKW</td>
+                                <td>S16</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    Download links
+                    <br>
+                    <br>
+                    <button onclick="window.location.href='/static/uploads/archive/Roberts_bank.zip'" class="btn btn-primary" id="btn">Part 1</button>
+                    <button onclick="window.location.href='/static/uploads/archive/Roberts_bank.zip'" class="btn btn-primary" id="btn">Part 2</button>
+                    <button onclick="window.location.href='/static/uploads/archive/Roberts_bank.zip'" class="btn btn-primary" id="btn">Part 3</button>
+                    <br>
+                    <br>
+
+                    <button onclick="window.location.href='/static/uploads/archive/Roberts_bank.zip'" class="btn btn-primary" id="btn">Part 4</button>
+                    <button onclick="window.location.href='/static/uploads/archive/Roberts_bank.zip'" class="btn btn-primary" id="btn">Part 5</button>
+                    <button onclick="window.location.href='/static/uploads/archive/Roberts_bank.zip'" class="btn btn-primary" id="btn">Part 6</button>
+                </div>
+
+                <div class="col-md-9">
+
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li><a href="#metadata" data-toggle="tab">Metadata</a></li>
+                        <li class="active"><a href="#home" data-toggle="tab">
+                                Summary_by_Species</a></li>
+                        <li class="active"><a href="#home" data-toggle="tab">
+                                Summary_by_Ecotypes</a></li>
+                        <li class="active"><a href="#home" data-toggle="tab">
+                                Summary_by_Pods</a></li>
+                        <li class="active"><a href="#home" data-toggle="tab">
+                            Summary_by_CallType</a></li>
+
+
+
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="metadata">
+                            Number of files: 93
+                            <br>
+                            Number of annotated events: 1547
+                            <br>
+                            Species identified: Orcas (Ocinus orca),
+                            <br>
+                            Humpback whales, (Megaptera novaeangliae);
+                            <br>Pacific white-sided dolphin (Sagmatias obliquidens);
+                            <div class="row">
+
+                                <div class="col-md-5">Sample rate: 96 KHz
+                                    <br>
+                                    File duration: 5 min
+                                    <br>
+                                    Total duration: 7.75h
+                                    <br>
+                                    File size: 95.3 MB
+                                    <br>
+                                    Total size: 8862 MB
+                                    <br>
+                                    Number of subsets: 10
+                                    <br>
+                                    Location: Robert's banks, BC, Canada
+                                    <br>
+                                    Coordinates:
+                                    <br>
+                                    Depth: 30m
+                                </div>
+                                <div class="col-md-7"><img src="/static/web/images/WorldMap.png" title="metadata"></div>
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="home">
+                            <img src="/static/uploads/product/Species.png" title="Meridian">
+                        </div>
+                        
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+</section>
+
+
+{% endblock %}

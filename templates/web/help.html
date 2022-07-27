@@ -1,0 +1,302 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HALLO Data Portal</title>
+  <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyC-7ZCqywqSbMdbu_NcKeK9oKDLsWQgoA0" type="text/javascript"></script>
+  <style type="text/css">
+    body {
+      min-height: 2000px;
+      padding-top: 70px;
+    }
+
+    .navbar-default {
+      background-color: #ff8800;
+      border-color: #e7e7e7;
+    }
+
+    .navbar-default .navbar-brand {
+      color: #fff;
+    }
+
+    .navbar-default .navbar-nav>li>a,
+    .navbar-default .navbar-nav>li>a:visited {
+      color: #fff;
+      width: 100px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .navbar-default .navbar-nav>.active>a,
+    .navbar-default .navbar-nav>.active>a:visited,
+    .navbar-default .navbar-nav li a:hover,
+    .navbar-default .navbar-nav>.active>a:hover,
+    .navbar-default .navbar-nav li a:active {
+      color: #fff;
+      background-color: #FF4500;
+      width: 100px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    table tr td {
+      font-size: 11px;
+    }
+
+    table tr td.price {
+      color: red;
+    }
+
+    table tr td.num span {
+      color: red;
+      padding: 0px 5px
+    }
+
+    table tr td.num i {
+      border-width: 0px;
+      background-color: #ddd;
+    }
+
+    div.shoplist div.bn {
+      font-size: 12px;
+      line-height: 25px;
+    }
+
+    div.shoplist div.bn span.price {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+    
+  <!-- 页头导航开始 -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+          <span style="font-weight:bold;">HALLO Data Portal</span>
+          <span style="font-size:14px;"></span></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'web_index'%}">Datasets</a></li>
+					<li><a href="{% url 'web_models_index' 1 %}">Benchmarks</a></li>
+					<li  class="active"><a href="{% url 'web_help' %}">Help</a></li>
+					<li><a href="{% url 'web_about' %}">About</a></li>
+
+        </ul>
+        <ul  class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true">{{request.session.webuser.username}}</a></li>
+            <li>{% if request.session.webuser.username %}
+              <a href="{% url 'web_logout' %}">Log off</a>
+            {% else %}
+            <a href="{% url 'web_login' %}">Log In</a>
+            {% endif %}</li>			
+            <li ><a href="{% url 'web_signup' %}">Sign Up</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+
+  </nav>
+  <!-- 页头导航结束 -->
+  <!-- Content Header (Page header) -->
+  <!-- 页面主体开始 -->
+
+
+  <div  id="help_header"   class="container">
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h2 class="box-title"> 
+                Instructions to HALLO Data Portal</h2>
+            </div>
+            <br>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div>
+              Welcome to <b>HALLO Data Portal </b> ! This portal provides two parts of functions: 
+              <ol>
+                <li>Query and download of marine acoustic data through Link: <a href="{% url 'web_index' %}">Datasets</a>
+                  Click <a href="#dataset_inquiry">Data Inquiry and Download</a> for detailed instruction.</li>
+                <li>Query and download of marine acoustic artificial intelligence model through link: 
+                  <a href="{% url 'web_models_index' 1 %}">Benchmarks</a></li>, 
+                  Click <a href="#model_inquiry">Model Inquiry and Download</a> for detailed instruction.
+              </ol>
+              Anonymous users could query and view the basic information of all datasets and models provided by Data Portal without logging in. 
+              If need download and view the meta detail files e.g. the annoation files of datasets, the YAML meta files of models,  
+              users need <a  id="dataset_inquiry" href="{% url 'web_signup' %}">Sign Up</a>  and <a href="{% url 'web_login' %}">Log In</a>.
+              <hr>
+              <h3>Data Inquiry and Download</h3>
+              <img src="static/web/images/Dataset_Query.jpg" alt=""> 
+              <br>
+              Visitors could inquire the required datasets based on below criteria:
+              <br>
+              <ol>
+                <li>
+                  <b>Keywords</b>
+                  Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+                </li>
+                <li>
+                  <b>Species</b>
+                  List all Species available for query, vistors can single-select or multiple-select items.
+                </li>
+                <li>
+                  <b>Ecotypes</b>
+                  List all Ecotypes available for query, vistors can single-select or multiple-select items.
+                </li>
+                <li>
+                  <b>Pods</b>
+                  List all Ecotypes available for query, vistors can single-select or multiple-select items.
+                </li>
+                <li>
+                  <b>Call Type</b>
+                  List all Ecotypes available for query, vistors can single-select or multiple-select items.
+                </li>
+                <li>
+                  <b>Start And/Or End of Record (in Local Time)</b>
+                  List all Ecotypes available for query, vistors can single-select or multiple-select items.
+                </li>
+                <li>
+                  <b>Coarse/Detailed Annotation </b>
+                  List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+                  Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+                  species such as Southern Resident Killer Whale. 
+                </li>
+                <li>
+                  <b>Coarse/Detailed Annotation </b>
+                  List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+                  Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+                  species such as Southern Resident Killer Whale. 
+                </li>
+              </ol>
+               <b>Clear</b> Button. Click this button if user want to reset all the criteria.
+               <br>
+               <b>Filter</b> Button. Click this button to inquire the datasets based on the criteria setup above.
+              <br>
+               <b>Datasets Available </b> table lists all the datasets that meet the query criteria. 
+               <div class="d-flex align-items-center"> 
+                <img src="static/web/images/Dataset_Query_result.jpg" alt=""></div>
+              
+               Under the table list, user could click 
+               the google map to view the geographical location of each dataset. 
+               <div class="d-flex align-items-center">
+                <img src="static/web/images/Google_map.jpg" alt=""></div>
+               <br>
+               For the each dataset listed,
+               visitors could click "Details" button to view the detail information of this dataset, including:
+               <div>
+                <ol>
+                <li>
+                  <b>Dataset Annotation</b>
+                  If visitor already sign up an account and log in with this account. He can view the download link and download.
+                </li>
+                <li>
+                  <b>Keywords</b>
+                  Input Keyword, for example "Jasco" to query all datasets with the keyword "Jasco" in the name.
+                </li>
+                <li>
+                  
+                </li>
+                <li>
+                  
+                </li>
+              </ol>
+              <div class="d-flex align-items-center"> <center><b>Dataset detail without LogIn</b></center>
+                <img src="static/web/images/Dataset_detail_without_LogIn.jpg" alt=""></div>
+              
+                <br>
+                <div class="d-flex align-items-center"><center><b>Dataset detail after LogIn</b></center>
+                  <img src="static/web/images/Dataset_detail_after_LogIn.jpg" alt=""></div>
+              
+            </div>
+            <div  id="model_inquiry"><a href="#top">Backup to Top</a></div>
+            <hr>
+<!---Model Inquiry and Download--->
+            <h3>Model Inquiry and Download</h3>
+            <img src="static/web/images/Model_Query.jpg" alt=""> 
+            <br>
+            Visitors could inquire the required models based on below criteria:
+            <br>
+            <ol>
+              <li>
+                <b>Keywords</b>
+                Input Keyword, for example "Killer Whale" to query all datasets with keywords "Killer Whale" in model names.
+              </li>
+              <li>
+                <b>Machine Learning Method</b>
+                Input Machine Learning Method, for example "CNN" to query all modes with keywords "CNN" in model names.
+              </li>
+              <li>
+                <b>Classification Level</b>
+                List all Classification levels of models, e.g. species level or call type level model.
+              </li>
+              <li>
+                <b>Classes</b>
+                List all classes of models, e.g. Right Whale means to inquire the models for Right Whale Detection.
+              </li>
+              <li>
+                <b>Training datasets</b>
+                List all Ecotypes available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Test datasets</b>
+                List all Ecotypes available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Start And/Or End of Record (in Local Time)</b>
+                List all Ecotypes available for query, vistors can single-select or multiple-select items.
+              </li>
+              <li>
+                <b>Coarse/Detailed Annotation </b>
+                List either Coarse or Detailed annotated datasets. Detailed annotated datasets include more fields such as 
+                Pods and call type information, however Coarse annotated datasets just mention if the data is from some 
+                species such as Southern Resident Killer Whale. 
+              </li>
+              
+            </ol>
+             <b>Clear</b> Button. Click this button if user want to reset all the criteria.
+             <br>
+             <b>Filter</b> Button. Click this button to inquire the models based on the criteria setup above.
+            <br>
+             <b>Models Available </b> table lists all the datasets that meet the query criteria. Vistors can view the model basic information
+             (meta data) without registering and Logging into Data portal. But after registering and Logging into Data portal, visitors can 
+             download the model codes and their more detail information.
+             <div class="d-flex align-items-center"> <center><b>Model List without LogIn</b></center>
+              <img src="static/web/images/ModelList_without_LogIn.jpg" alt=""></div>
+            
+              <br>
+              <div class="d-flex align-items-center"><center><b>Model List after LogIn</b></center>
+                <img src="static/web/images/ModelList_After_LogIn.jpg" alt=""></div>
+            
+          </div>
+          <!-- /.box -->
+        </div>
+        <div><a href="#top">Backup to Top</a></div>
+      </div>
+
+    </section>
+  </div>
+  
+</body>
+
+</html>
